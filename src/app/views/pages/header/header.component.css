@@ -1,0 +1,11 @@
+.headers{
+    display: block !important;
+}
+
+.navbar-expand-lg{
+    will-change: transform;
+    justify-content: space-between !important;
+    transition: all 0.2s ease !important;
+    transform: translateY(0)
+
+}

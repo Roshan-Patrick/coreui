@@ -1,0 +1,809 @@
+<app-header></app-header>
+<section class="section-search py-5" id="home" style="
+					background-image: url('assets/img/BMN%20Form.png'), linear-gradient(180deg, #eaf4fc 0%, #ffffff 100%);
+					/* background-size: 1550px 750px;  */
+					background-repeat: no-repeat; 
+					background-position: center top; 
+					min-height: 200px; 
+					width: 100%;">
+	<div class="container">
+		<div class="row align-items-center">
+			<!-- Form on the left -->
+			<div class="col-md-12 form-card d-flex align-items-stretch">
+				<div class="card p-4 shadow animated fadeInLeft w-100"
+					style="background-color: #ffffff; border-radius: 10px;">
+					<!-- Heading -->
+					<div class="text-center mb-3">
+						<h1 class="fw-bold mb-2" style="color: #048990; font-size: 2.1rem !important">
+							<b>Welcome to Book<span style="color: #f36302;">My</span>Nurse.Com</b>
+						</h1>
+						<p class="text-muted fs-6 fw-bold mb-2">
+							Select your home nursing professional without any hassle.
+						</p>
+					</div>
+					<!-- Booking Form -->
+					<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+						<div class="mb-2 d-flex align-items-center">
+							<label for="name" class="form-label fw-bold mb-0" style="width: 120px;">Name</label>
+							<input formControlName="name" type="text" id="name" class="form-control"
+								placeholder="Please Enter your name" required>
+						</div>
+						<div class="mb-2 d-flex align-items-center">
+							<label for="mobile" class="form-label fw-bold mb-0" style="width: 120px;">Mobile</label>
+							<input formControlName="mobile" type="tel" id="mobile" class="form-control"
+								placeholder="Please Enter your mobile number" pattern="\d{10}" maxlength="10" required
+								onkeypress="return /[0-9]/.test(event.key)">
+						</div>
+						<div class="mb-2 d-flex align-items-center">
+							<label for="nurseType" class="form-label fw-bold mb-0" style="width: 120px;">Looking
+								for</label>
+							<select formControlName="nurseType" id="nurseType" class="form-select" required>
+								<option value="" selected>Select</option>
+								<option value="Male">Male Nurse</option>
+								<option value="Female">Female Nurse</option>
+							</select>
+						</div>
+						<div class="mb-2 d-flex align-items-center">
+							<label for="location" class="form-label fw-bold mb-0" style="width: 120px;">Location</label>
+							<input formControlName="location" type="text" id="location" class="form-control"
+								placeholder="Please Enter your location" required>
+						</div>
+						<div class="mb-2 d-flex align-items-center">
+							<label for="services" class="form-label fw-bold mb-0" style="width: 120px;">Services</label>
+							<select formControlName="services" class="form-select" required>
+								<option value="" selected>Select</option>
+								<option value="Elder Care">Elder Care</option>
+								<option value="Bedridden Patient Care">Bedridden Patient Care</option>
+								<option value="Stroke Patient Care">Stroke Patient Care</option>
+								<option value="Tracheostomy Patient Care">Tracheostomy Patient Care</option>
+								<option value="Post Operative Care">Post Operative Care</option>
+								<option value="ICU Setup at Home">ICU Setup at Home</option>
+								<option value="Physiotherapy at Home">Physiotherapy at Home</option>
+								<option value="Travel Nurse">Travel Assist</option>
+								<option value="Doctor's Visit at Home">Doctor's Visit at Home</option>
+							</select>
+						</div>
+						<div class="mb-2 d-flex align-items-center">
+							<label for="preferences" class="form-label fw-bold mb-0">Service options</label>
+							<select formControlName="preferences" id="preferences" class="form-select" required>
+								<option value="" selected>Select</option>
+								<option value="24hrs">24 Hours</option>
+								<option value="12hrs">12 Hours</option>
+								<option value="8hrs">8 Hours</option>
+								<option value="4hrs">4 Hours</option>
+							</select>
+						</div>
+						<div class="form-check mt-3">
+							<input formControlName="agreement" class="form-check-input" type="checkbox" id="agreement"
+								required>
+							<label class="form-check-label fw-bold" for="agreement" style="color: #048990;">
+								I have read and agree to the
+								<a routerLink="user-agreement.html" target="_blank"
+									style="color: #f36302; text-decoration: underline;">user agreement</a>
+								and
+								<a routerLink="privacy-policy.html" target="_blank"
+									style="color: #f36302; text-decoration: underline;">privacy policy</a>.
+							</label>
+						</div>
+						<div class="mt-3">
+							<button type="submit" class="btn w-100 custom-submit-button"
+								[disabled]="!bookingForm.valid">Submit</button>
+						</div>
+					</form>
+
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="section section-specialities py-5" style="background: linear-gradient(120deg, #f0f4f7, #d9e2ec);">
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Left Content -->
+			<div class="col-md-8">
+				<div class="section-header">
+					<h2><b>Nursing Care Services at Home</b></h2>
+					<p class="sub-title">
+						At BookMyNurse, we are your premier destination for professional and top-tier Home Nursing
+						Services, proudly serving over 1,00,000 satisfied patients since our inception in 2012. With
+						eight dedicated branches located strategically in Chennai, Pondicherry, Trichy, Thanjavur,
+						Madurai, Tirunelveli, and Coimbatore, we're committed to extending our quality care services
+						throughout India. Booking our services is simple; just call our Hotline at <b>99 44 33 44
+							54</b>.
+					</p>
+				</div>
+			</div>
+
+			<!-- Right Content -->
+			<div class="col-md-4 d-flex align-items-center justify-content-center">
+				<div class="bg-info text-dark p-4 rounded shadow text-center w-100">
+					<h2 class="fw-bold"><b>Nurse Registration</b></h2>
+					<p class="rk">Register now to join the BookMyNurse platform.</p>
+					<a routerLink="page/nurseregistrationform" class="btn btn-light btn-lg mt-3 text-dark fw-bold">
+						Register Now
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<!-- Clinic and Specialities -->
+
+<!-- Popular Section -->
+<section class="section section-doctor" id="aboutus">
+	<!-- About Us Section -->
+	<div class="row mb-4">
+		<div class="col-12 text-center">
+			<h1 class="us"><b>About Us</b></h1>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="card bg-light border-0 shadow">
+					<div class="card-header bg-info text-white text-center p-3">
+						<h2 class="mb-0"><b>BookMyNurse</b></h2>
+					</div>
+					<div class="card-body p-3">
+						<p class="card-text text-center">
+							Welcome to BookMyNurse: <br> Your Trusted Partner in Home Healthcare
+						</p>
+						<div class="about-content">
+							<p>
+								At BookMyNurse, we understand that healthcare should be accessible and personalized. Our
+								dedicated team of experienced nurses is committed to providing compassionate,
+								high-quality care tailored to your individual needs.
+							</p>
+							<p>
+								Whether you require post-operative assistance, chronic illness management, or simply a
+								helping hand, our skilled professionals are here to support you every step of the way.
+								With just a few clicks, you can book a qualified nurse to ensure your comfort and
+								wellbeing in the familiar surroundings of your home. Experience the peace of mind that
+								comes with expert care at your fingertips.
+							</p>
+							<a href="javascript:;" class="btn btn-primary">Read More...</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-lg-8">
+				<div class="doctor-slider slider">
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg">
+							</a>
+							<a routerLink="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Swapna</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<span class="d-inline-block average-rating">(17)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Periodontology
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<!-- Adjusted button layout -->
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn w-100">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg">
+							</a>
+							<a href="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Manoj Elder</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(35)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>chennai,Tamilnadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization:Maxillofacial
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg">
+							</a>
+							<a routerLink="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Kiara</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(27)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>chennai,Tamilnadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Cardiology
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-04.jpg">
+							</a>
+							<a href="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Kajal</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(4)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>chennai,Tamilnadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Urology
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
+							</a>
+							<a href="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Manogar</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(66)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>chennai,Tamilnadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Ophthalmology
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
+							</a>
+							<a href="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Samantha</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(52)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>chennai,Tamilnadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Orthopaedics
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
+							</a>
+							<a href="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Hema</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(43)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i>chennai,Tamilnadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Neurology
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- /Doctor Widget -->
+
+					<!-- Doctor Widget -->
+					<div class="profile-widget">
+						<div class="doc-img">
+							<a routerLink="doctor-profile.html">
+								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
+							</a>
+							<a href="javascript:void(0)" class="fav-btn">
+								<i class="far fa-bookmark"></i>
+							</a>
+						</div>
+						<div class="pro-content">
+							<h3 class="title">
+								<a routerLink="doctor-profile.html">Abhajeet</a>
+								<i class="fas fa-check-circle verified"></i>
+							</h3>
+							<p class="speciality">MBBS, MD - Dermatology, Venereology & Leprosy</p>
+							<div class="rating">
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star filled"></i>
+								<i class="fas fa-star"></i>
+								<span class="d-inline-block average-rating">(49)</span>
+							</div>
+							<ul class="available-info">
+								<li>
+									<i class="fas fa-map-marker-alt"></i> Chennai,TamilNadu
+								</li>
+								<li>
+									<i class="far fa-clock"></i> Available from Mon - Sun
+								</li>
+								<li>
+									<i class="fas fa-medkit"></i> Specialization: Dermatology
+								</li>
+								<li>
+									<i class="fas fa-language"></i> Languages Known: English, Tamil
+								</li>
+							</ul>
+							<div class="row row-sm text-center">
+								<div class="col-12">
+									<a routerLink="doctor-profile.html" class="btn view-btn">View Profile</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Doctor Widget -->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- /Popular Section -->
+
+<!-- ========================= about-section start ========================= -->
+<section id="about-section" class="about-section pt-50"
+			style="background: linear-gradient(120deg, #f0f4f7, #d9e2ec);">
+			<div class="col-12 text-center">
+				<h1 class="us"><b>About Us</b></h1>
+			</div>
+			<div class="container" style="max-width: 1200px; padding-left: 15px; padding-right: 15px;">
+				<div class="row">
+					<div class="col-12 mx-auto">
+						<div class="about-content text-center mb-55">
+							<div class="section-title mb-30">
+								<h2 class="mb-15 wow fadeInUp text-dark" data-wow-delay=".4s" style="margin-top: 30px;">
+									<b>Welcome to BookMyNurse</b>
+								</h2>
+							</div>
+							<p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
+								At Chennai Home Nursing, we take immense pride in being your premier choice for home
+								nursing
+								services in Chennai. With a strong presence across Tamil Nadu, our Chennai branch
+								exemplifies our
+								commitment to delivering high-quality healthcare within the comfort and familiarity of
+								your home.
+							</p>
+
+							<h3 class="mb-35 wow fadeInUp text-dark" data-wow-delay=".6s" style="margin-top: 40px;">
+								<b>Why Choose BookMyNurse?</b>
+							</h3>
+
+							<p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
+								<span class="about-down">Local Expertise, Global Standards:</span> Our Chennai branch
+								seamlessly blends local expertise with global healthcare standards. Our nursing
+								professionals are
+								not only highly skilled but also deeply familiar with the unique healthcare needs of the
+								local
+								community.
+							</p>
+							<p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
+								<span class="about-down">Comprehensive Home Nursing Care:</span> Whether you require
+								specialized
+								care for a family member or need general nursing services, Chennai Home Nursing Chennai
+								has you
+								covered. Our wide range of services encompasses everything from post-operative care to
+								palliative
+								care.
+							</p>
+							<p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
+								<span class="about-down">Experienced Nursing Team:</span> Our dedicated nursing team in
+								Chennai
+								is handpicked for their experience, compassion, and commitment to your well-being. We
+								understand
+								that every patient is unique, and our nurses are trained to provide personalized care
+								tailored to
+								individual needs.
+							</p>
+							<p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
+								<span class="about-down">Accessible Care Across Chennai:</span> We understand that
+								convenience
+								is crucial, and we ensure that our services are accessible to families across Chennai.
+								No matter
+								where you are in the city, our compassionate nursing care is just a phone call away.
+							</p>
+							<p class="mb-35 wow fadeInUp" data-wow-delay=".6s">
+								<span class="about-down">Transparent and Honest Service:</span> At Chennai Home Nursing,
+								we
+								believe in transparency and open communication. Our team is always ready to address your
+								concerns and provide honest guidance throughout your healthcare journey.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="about-img text-center">
+				<img src="assets/img/ourstrength.png" alt="Our Strengths, Chennai Home Nursing" class="ourstrength">
+			</div>
+		</section>
+
+<!-- ========================= about-section end ========================= -->
+
+<!-- Availabe Features -->
+<section id="services" class="bg-white service-section pt-50">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-8 mx-auto">
+				<div class="section-title text-center mb-55">
+					<span class="wow fadeInDown" data-wow-delay=".2s"><b>Services</b></span>
+					<h1 class="mb-15 wow fadeInUp" data-wow-delay=".4s"><b>BookMyNurse Services</b></h1>
+					<p class="wow fadeInUp" data-wow-delay=".6s">At BookMyNurse, we pride ourselves on
+						offering
+						a holistic approach to home nursing. Our dedicated team includes skilled doctors, nurses,
+						physiotherapists, pharmacies, laboratories, and diagnostics centers, all working seamlessly
+						together. We also have strong partnerships with multispecialty hospitals, ensuring that our
+						patients receive the best care possible, right in the comfort of their homes
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<!--addddd  -->
+			<div class="col-lg-4 col-md-6" id="ElderCare">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+					</div>
+					<div class="service-content">
+						<h4>Elder Care</h4>
+						<p>Providing professional elder care at home with compassionate support, medication
+							management, and daily assistance, ensuring seniors' comfort and well-being.</p>
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6" id="Bedriddenpat">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+					</div>
+					<div class="service-content">
+						<h4>Bedridden Patient Care</h4>
+						<p>We provide complete care solutions to Bedridden Patients - Timely Care, Sponge baths,
+							Feeding, Medication, and vital signs, to maintain records and reports.</p>
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6" id="stroke">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+					</div>
+					<div class="service-content">
+						<h4>Stroke Patient Care</h4>
+						<p>Our aim is to offer professional care and support to stroke survivors, helping them recover
+							quickly. Explore numerous testimonials on Alive to learn more about our services.</p>
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<!--end  -->
+			<!-- add -->
+			<div class="col-lg-4 col-md-6" id="Tracheostomy">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+					</div>
+					<div class="service-content">
+						<h4>Tracheostomy Patient Care</h4>
+						<p>Expert care for tracheostomy patients at home. Our skilled nurses ensure comfort,
+							hygiene, and specialized medical attention, enhancing recovery and well-being.</p>
+
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6" id="PostOperative">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+
+					</div>
+					<div class="service-content">
+						<h4>Post Operative Care</h4>
+						<p>Ensure optimal recovery with post-operative care at home. Our skilled team provides
+							personalized support, monitoring, and medical assistance for your comfort. </p>
+
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6" id="icu">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+					</div>
+					<div class="service-content">
+						<h4>ICU Setup at Home</h4>
+						<p>Experience top-tier ICU care at home with our complete setup, offering advanced medical
+							equipment and expert nursing support for critical patient needs.</p>
+
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<!-- add end -->
+			<!-- 2 add  -->
+			<div class="col-lg-4 col-md-6" id="Physiotherapy">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+
+					</div>
+					<div class="service-content">
+						<h4>Physiotherapy at Home</h4>
+						<p>Experience expert physiotherapy at your home. Our specialized care promotes recovery,
+							mobility, and comfort, ensuring optimal health and convenience for you.</p>
+
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<div class="col-lg-4 col-md-6" id="travel">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+
+					</div>
+					<div class="service-content">
+						<h4>Travel Nurse</h4>
+						<p>Travel Nurses provide expert care wherever you go, ensuring your health and comfort on
+							the move. Experienced and compassionate, we meet your healthcare needs.</p>
+
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+			<!-- 2 end -->
+			<div class="col-lg-4 col-md-6" id="doctor's">
+				<div class="service-item mb-30">
+					<div class="service-icon mb-25">
+
+					</div>
+					<div class="service-content">
+						<h4>Doctor’s Visit at Home</h4>
+						<p>Get expert medical care at home with personalized treatments. Our doctors provide thorough
+							prioritizing your comfort and well-being with every visit.</p>
+
+					</div>
+					<div class="service-overlay img-bg"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Availabe Features -->
+
+<div id="successModal" class="custom-modal">
+	<div class="custom-modal-content">
+		<img src="assets/img/BMN - Nurse.png" alt="Nurse" style="width: 150px; height: auto; margin-bottom: 15px;" />
+		<p style="color: #048990; font-size: 18px; font-weight: bold;">
+			Dear Sir/Madam,
+		</p>
+		<p style="color: #333; font-size: 16px;">
+			Thanks for your enquiry. BookMyNurse team will get back to you at the
+			earliest.
+		</p>
+		<button id="closeModal"
+			style="background-color: #f36302; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;"
+			(click)="redirectToNurse()">
+			Proceed
+		</button>
+	</div>
+</div>
+<app-footer></app-footer>
