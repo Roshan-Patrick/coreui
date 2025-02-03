@@ -1,0 +1,115 @@
+body {
+    /* background-color: #e9ecef; */
+    /* Light gray background for the page */
+    margin: 0; /* Remove any extra margin */
+    padding: 0; /* Remove any extra padding */
+}
+
+.logo-3 {
+    background-color: #faf8f7;
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 30px auto;
+    padding: 20px;
+    /* background-color: #13a7f1; */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    border: none; /* Remove any border that might create a line */
+}
+
+.form-control, .form-select, textarea {
+    background-color: #ffffff; /* Light background for inputs */
+    border-radius: 5px; /* Rounded corners for inputs */
+    border: 1px solid #ced4da; /* Subtle border */
+    color: #333 !important;
+    margin: 0; /* Reset margins */
+}
+
+.header-img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 100%; /* Full width */
+    height: 150px; /* Fixed height */
+    object-fit: contain; /* Prevent image distortion */
+}
+
+h1 {
+    color: #495057; /* Dark gray for the header */
+    margin: 0; /* Reset header margin */
+}
+
+label {
+    font-weight: bold;
+    color: #f50404 !important; 
+    margin: 0; /* Reset margins for labels */
+}
+
+.form-container input {
+    color: #333 !important;
+}
+
+.form-label {
+    width: 40%;
+    color: #333;
+    margin: 0; /* Reset margin */
+}
+
+.form-select {
+    color: #333;
+    margin: 0; /* Reset margin */
+}
+
+.form-check {
+    margin-bottom: 20px;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    border: none; /* Ensure no border appears as a line */
+    transition: all 0.3s ease; /* Smooth transition effect */
+}
+.btn-success:disabled {
+	background: #ddd;
+	color: #aaa;
+	cursor: not-allowed !important;
+	opacity: 0.7;
+	box-shadow: none;
+	transform: none;
+}
+
+a {
+    color: #f36302;
+    /* text-decoration: underline; */
+}
+
+a:hover {
+    color: #d34f00;
+    /* text-decoration: underline; */
+}
+
+.form-container {
+    border: 2px solid #048990; /* Mild blue color */
+    border-radius: 8px; /* Optional: Rounded corners */
+    padding: 20px; /* Optional: Inner padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+}
+
+.header-nav a {
+    text-decoration: none; /* No underline */
+    color: inherit; /* Use the inherited text color */
+    transition: color 0.3s; /* Smooth transition for color change */
+}
+
+/* Change color for all links on hover or focus */
+.header-nav a:hover,
+.header-nav a:focus {
+    color: #dd4b39; /* Green color when hovered or focused */
+}
+
+.form-control{
+    color: #333;
+}
+

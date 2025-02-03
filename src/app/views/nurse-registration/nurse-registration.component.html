@@ -1,0 +1,82 @@
+<c-row>
+    <c-col xs>
+      <c-card style="padding: 0 !important;" class="mb-4 nurse-card">
+        <c-card-header class="table-header">Users</c-card-header>
+        <c-card-body style="padding: 0 !important;">
+          <table [hover]="true" [responsive]="true" [striped]="true" cTable class="mb-4 border table-styled ">
+            <thead cTableColor="light">
+              <tr>
+                <th class="text-center">
+                    <svg cIcon name="cilPeople"></svg>
+                </th>
+                <th class="text-center">Name</th>
+                <th class="text-center">Aadhaar</th>
+                <th class="text-center">Mobile</th>
+                <th class="text-center">Email</th>
+                <th class="text-center">Gender</th>
+                <th class="text-center">DOB</th>
+                <th class="text-center">Qualification</th>
+                <th class="text-center">Experience</th>
+                <th class="text-center">Languages</th>
+                <th class="text-center">Specialization</th>
+                <th class="text-center">Address</th>
+                <th class="text-center text-nowrap">Base Location</th>
+                <th class="text-center">Registration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let user of users; index as i">
+                <td class="text-center">
+                    <c-avatar
+                      size="xl"
+                      src="{{ user.photoUrl }}"
+                    ></c-avatar>
+                  </td>
+                <td class="text-center">
+                  <div>{{ user.name }}</div>
+                </td>
+                <td>
+                  <div>{{ user.aadhaar }}</div>
+                </td>
+                <td class="text-center">
+                  <div>{{ user.mobile }}</div>
+                </td>
+                <td class="text-center">
+                  <div>{{ user.email }}</div>
+                </td>
+                <td class="text-center">
+                  <div>{{ user.gender }}</div>
+                </td>
+                <td>
+                  <div class="text-nowrap">{{ user.dob | date: 'dd-MM-yyyy' }}</div>
+                </td>
+                <td class="text-center">
+                    <div>{{ user.education }}</div>
+                  </td>
+                  <td>
+                    <div>{{ user.experience }}</div>
+                  </td>
+                  <td class="text-center">
+                    <div>{{ user.languages }}</div>
+                  </td>
+                  <td class="text-center">
+                    <div>{{ user.specialization }}</div>
+                  </td>
+                  <td class="text-center">
+                    <div>{{ user.address }}</div>
+                  </td>
+                  <td class="text-center">
+                    <div>{{ user.specialization }}</div>
+                  </td>
+                  <td class="text-center">
+                    <div>{{ user.base_location }}</div>
+                  </td>
+              </tr>
+            </tbody>
+          </table>
+          
+          
+        </c-card-body>
+      </c-card>
+    </c-col>
+  </c-row>

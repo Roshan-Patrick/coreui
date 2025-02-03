@@ -16,6 +16,7 @@ export class Page404Component {
   @HostListener('window:scroll', ['$event'])
 
   ngOnInit(): void {
+    if(!this.bookingForm){
     this.bookingForm = this.fb.group({
       name: ['', Validators.required],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
@@ -24,19 +25,19 @@ export class Page404Component {
       services: ['', Validators.required],
       preferences: ['', Validators.required],
       agreement: [false, Validators.requiredTrue]
-    });
-    var st = window.pageYOffset;
-    console.log(st);
-    var navbar = document.getElementsByTagName('nav')[0];
+    });}
+  //   var st = window.pageYOffset;
+  //   // console.log(st);
+  //   var navbar = document.getElementsByTagName('nav')[0];
 
-   console.log(navbar);
-   if(st > 95){
-    navbar.classList.add('header-pinned')
-   }else{
-    navbar.classList.remove('header-pinned');
-   }
+  // //  console.log(navbar);
+  //  if(st > 95){
+  //   navbar.classList.add('header-pinned')
+  //  }else{
+  //   navbar.classList.remove('header-pinned');
+  //  }
+  // }
   }
-
   onSubmit(): void {
     if (this.bookingForm.valid) {
       // Create a copy of the form value, excluding the `agreement` field
@@ -65,6 +66,10 @@ export class Page404Component {
   redirectToNurse() {
     this.router.navigate(['/page/nurse']); 
   
+    }
+
+    get f(){
+      return this.bookingForm.controls;
     }
 
     getServiceAbbreviation(service: string) {

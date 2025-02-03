@@ -41,7 +41,8 @@ import { FootersComponent } from './footer/footer.component';
     RouterModule,
     TranslateModule.forChild(),
     HeaderComponent,
-    FootersComponent
+    FootersComponent,
+
 ]
 })
 export class PagesModule {

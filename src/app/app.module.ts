@@ -84,6 +84,7 @@ const APP_CONTAINERS = [
     
   ],
   providers: [
+    IconSetService,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

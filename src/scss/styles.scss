@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 // If you want to override variables do it here
 @import "variables";
+@import 'animate.css';
 
 $enable-ltr: true;
 $enable-rtl: true;
@@ -21,6 +22,7 @@ $enable-rtl: true;
 
 // If you want to add something do it here
 @import "custom";
+
 
 .sidebar-nav .nav-link:hover {
     color: var(--cui-sidebar-nav-link-hover-color) !important;
@@ -2309,14 +2311,14 @@ html.menu-opened body {
 	15. Home
 -----------------------*/
 
-.section-search { 
-	background: #f9f9f9 url(../assets/img/search-bg.png) no-repeat bottom center;
-    min-height: 450px;
-    background-size: 100% auto;
-    position: relative;
-    background-blend-mode: Darken;
-    padding: 80px 0;
-}
+// .section-search { 
+// 	// background: #f9f9f9 url(../assets/img/search-bg.png) no-repeat bottom center;
+//     min-height: 450px;
+//     background-size: 100% auto;
+//     position: relative;
+//     background-blend-mode: Darken;
+//     padding: 80px 0;
+// }
 .section-header {
     margin-bottom: 60px;
 }
@@ -7540,16 +7542,28 @@ body {
   }
 
   .custom-submit-button {
-    background-color: #048990; /* Green background */
+	background:linear-gradient(to right, #ffa500b3, #ffa500);
     color: #f0f0f0; /* Orange text */
     border: none;
     font-weight: bold;
-    transition: all 0.3s ease; /* Smooth transition effect */
+    transition: all 0.8s ease; /* Smooth transition effect */
+	padding: 8px 18px;
+    border-radius: 5px;
   }
 
+  .custom-submit-button:active {
+	transform: scale(0.95);
+    background:linear-gradient(to right, violet , #74287C,);
+  }
+  .custom-submit-button:focus{
+	outline: none !important;
+  }
+
+
   .custom-submit-button:not(:disabled):hover {
-    background-color: #f36302; /* Orange background on hover */
-    color: white; /* Green text on hover */
+    background: linear-gradient(to right, violet, #74287C)!important;
+    transition: all .4s ease;
+    color: #ebe3ec;
   }
 
   .custom-submit-button:not(:disabled):focus {
@@ -7559,9 +7573,9 @@ body {
 
   .custom-submit-button:disabled {
 	background: #ddd;
-	color: #aaa;
+	color: #aaa !important;
 	cursor: not-allowed !important;
-	opacity: 0.7;
+	opacity: 0.7 !important;
 	box-shadow: none;
 	transform: none;
   }
@@ -7587,14 +7601,14 @@ body {
 }
 
 /* Default Background Styling */
-.section-search {
-    background-image: linear-gradient(180deg, #eaf4fc 0%, #ffffff 100%), url('../assets/img/BMNForm.png') !important;
-    background-size: 1550px 750px;
-    background-repeat: no-repeat;
-    background-position: center top;
-    min-height: 200px;
-    width: 100%;
-  }
+// .section-search {
+//     background-image: linear-gradient(180deg, #eaf4fc 0%, #ffffff 100%), url('../assets/img/BMNForm.png') !important;
+//     background-size: 1550px 750px;
+//     background-repeat: no-repeat;
+//     background-position: center top;
+//     min-height: 200px;
+//     width: 100%;
+//   }
 
   /* Full-screen background for larger screens */
   @media (min-width: 1200px) {
@@ -8235,4 +8249,22 @@ h2.mb-15 {
     margin-bottom: 0;
 	padding-top: 0px !important;
     padding-bottom: 0px !important;
+}
+//SideNavbar
+
+.ng-scroll-content,
+.sidebar-brand,
+.sidebar-toggler,
+.ng-scrollbar-wrapper {
+    background-color: #048990 !important;
+}
+
+c-sidebar-nav-link-content{
+	color: white !important;
+	font-weight: 400 !important;
+}
+
+.sidebar-brand-full.ng-star-inserted{
+	position: relative;
+	right: 14px;
 }

@@ -7,6 +7,7 @@ import { Page500Component } from './views/pages/page500/page500.component';
 import { LoginComponent } from './views/pages/login/login.component';
 import { RegisterComponent } from './views/pages/register/register.component';
 import { AppointmentComponent } from './views/appointment/appointment.component';
+import { NurseRegistrationComponent } from './views/nurse-registration/nurse-registration.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,10 @@ const routes: Routes = [
       {
         path: 'appointment',
         component: AppointmentComponent
+      },
+      {
+        path: 'nurseReg',
+        component: NurseRegistrationComponent
       },
     ]
   },

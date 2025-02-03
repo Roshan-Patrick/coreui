@@ -303,4 +303,31 @@
 	padding: 0 10px;
 }
 
+.section-search {
+	position: relative;
+	min-height: 200px;
+	width: 100%;
+	background-image: url('../../../../assets/img/BMNForm.png');
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-size: cover; /* Ensure image covers full screen */
+	animation: imageFade 8s infinite alternate; /* Apply the animation */
+	transition: background-image 8s ease-in-out; /* Smooth transition for background image */
+  }
+  
+  /* Keyframes to animate the background images */
+  @keyframes imageFade {
+	0% {
+	  background-image: url('../../../../assets/img/BMNForm.png');
+	  opacity: 1;
+	}
+	50% {
+	  background-image: url('../../../../assets/img/bmn(2).png');
+	  opacity: 1; /* Full opacity */
+	}
+	100% {
+	  background-image: url('../../../../assets/img/BMNForm.png');
+	  opacity: 1; /* Full opacity */
+	}
+  }
 

@@ -41,6 +41,20 @@ deleteBooking(id: any):Observable<any>{
   );
 }
 
+nurseRegistrationDetails(formData: FormData):Observable<any>{
+  return this.http.post(this.baseUrl+'register/registerNurse',formData)
+  .pipe(
+    catchError(this.errorHandler)
+  );
+}
+
+nurseRegistered():Observable<any>{
+  return this.http.get(this.baseUrl+'register/registrations',{headers:this.headers})
+  .pipe(
+    catchError(this.errorHandler)
+  );
+}
+
 
 
   errorHandler(error:any) {
