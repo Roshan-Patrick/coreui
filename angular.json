@@ -34,13 +34,15 @@
             "styles": [
               "src/assets/css/style.css",
               "src/scss/styles.scss",
-              "src/assets/css/bootstrap.min.css",
               "src/assets/css/bootstrap-datetimepicker.min.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/assets/plugins/fontawesome/css/fontawesome.min.css"
+              "src/assets/plugins/fontawesome/css/fontawesome.min.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": [
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+              "src/assets/js/jquery.min.js",
+              "src/assets/js/bootstrap.min.js",
+              "src/assets/js/slick.js",
+              "src/assets/js/script.js"
             ],
             "allowedCommonJsDependencies": ["chart.js"]
           },

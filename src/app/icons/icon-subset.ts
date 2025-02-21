@@ -94,7 +94,9 @@ import {
   cilBriefcase,
   cilUserUnfollow,
   cilLanguage,
-  cilMedicalCross
+  cilMedicalCross,
+  cilCheckCircle,
+  cilBan,
 
 } from '@coreui/icons';
 
@@ -194,7 +196,9 @@ export const iconSubset = {
   cilEducation,
   cilBriefcase,
   cilLanguage,
-  cilMedicalCross
+  cilMedicalCross,
+  cilCheckCircle,
+  cilBan
 };
 
 export enum IconSubset {
@@ -293,5 +297,7 @@ export enum IconSubset {
   cilEducation='cilEducation',
   cilBriefcase='cilBriefcase',
   cilLanguage='cilLanguage',
-  cilMedicalCross='cilMedicalCross'
+  cilMedicalCross='cilMedicalCross',
+  cilCheckCircle='cilCheckCircle',
+  cilBan='cilBan'
 }

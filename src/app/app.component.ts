@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit  } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 
 import { IconSetService } from '@coreui/icons-angular';
 import { iconSubset } from './icons/icon-subset';
 import { Title } from '@angular/platform-browser';
+declare var $: any; // Declare jQuery globally
 
 @Component({
   selector: 'app-root',
   template: '<router-outlet></router-outlet>',
 })
 export class AppComponent implements OnInit {
-  title = 'CoreUI Free Angular Admin Template';
+  title = 'BookMyNurse';
 
   constructor(
     private router: Router,
@@ -28,5 +29,19 @@ export class AppComponent implements OnInit {
         return;
       }
     });
+  }
+  ngAfterViewInit() {
+    setTimeout(() => {
+      $('.doctor-slider').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: false,
+        autoplay: true,
+        autoplaySpeed: 5000,
+        prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+        nextArrow: '<button type="button" class="slick-next">Next</button>',
+      });
+    }, 1000); // Delay to ensure DOM is loaded
   }
 }

@@ -1,33 +1,65 @@
-<div class="position-relative d-flex align-items-center justify-content-center min-vh-100 bg-image" style="background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');">
-  <div class="container position-absolute top-50 start-50 translate-middle">
-    <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-5 card shadow-lg">
-        <div class="card-body py-5 px-md-5">
-          <h1 class="text-center pb-3">Login</h1>
-          <form>
-            <div class="mb-3">
-              <label for="username" class="form-label">Username</label>
-              <input type="text" class="form-control" id="username" placeholder="Username" required>
+<div class="content-wrapper">
+  <div [class]="'container ' + containerClass">
+    <div class="row">
+      <!-- SIGN UP -->
+      <div class="col align-items-center flex-col sign-up">
+        <div class="form-wrapper align-items-center">
+          <div class="form sign-up">
+            <div class="input-group">
+              <input type="text" placeholder="Username">
             </div>
-            <div class="mb-4">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password" required>
+            <div class="input-group">
+              <input type="email" placeholder="Email">
             </div>
-            <div class="row">
-              <div class="col-md-6 mb-3">
-                <button type="submit" class="btn btn-primary w-100">Login</button>
+            <div class="input-group">
+              <input type="password" placeholder="Password">
+            </div>
+            <div class="input-group">
+              <input type="password" placeholder="Confirm password">
+            </div>
+            <button>Sign Up</button>
+            <p>
+              <span>Already have an account?</span>
+              <b (click)="toggleForm()" class="pointer">Sign in here</b>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SIGN IN -->
+      <div class="col align-items-center flex-col sign-in">
+        <div class="form-wrapper align-items-center">
+          <div class="form sign-in">
+            <form [formGroup]="loginForm" (ngSubmit)="onLoggedIn()">
+              <div class="input-group">
+                <input type="text" placeholder="Username" formControlName="username">
+                <div *ngIf="f['username']?.hasError('required') && (f?.['username']?.touched || submitted)"
+                  style="color: red; font-size: 12px; text-align: left; padding-left: 10px;">
+                  Username is required
+                </div>
               </div>
-              <div class="col-md-6 text-end">
-                <a href="#" class="btn btn-link">Forgot password?</a>
+              <div class="input-group">
+                <input type="password" placeholder="Password" formControlName="password">
+                <div *ngIf="f['password']?.hasError('required') && (f?.['password']?.touched || submitted)"
+                  style="color: red; font-size: 12px; text-align: left; padding-left: 10px;">
+                  Password is required
+                </div>
               </div>
-            </div>
-          </form>
+              <button>Sign In</button>
+              <div class="text-danger mt-2" style="background-color: bisque" *ngIf="loginFailed">
+                Login Failed: {{ username_msg ? username_msg : pwd_msg }}
+              </div>
+              <p>
+                <b>Forgot password?</b>
+              </p>
+              <p>
+                <span>Don't have an account?</span>
+                <b (click)="toggleForm()" class="pointer">Sign up here</b>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-
-

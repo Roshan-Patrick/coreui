@@ -1,5 +1,7 @@
+
+
 <app-header></app-header>
-<section class="section-search py-5">
+<section class="section-search py-5" id="home">
 	<div class="container">
 		<div class="row align-items-center">
 			<!-- Form on the left -->
@@ -9,7 +11,7 @@
 					<!-- Heading -->
 					<div class="text-center mb-3">
 						<h1 class="fw-bold mb-2" style="color: #048990;">
-							<b>Welcome to Book<span style="color: #f36302;">My</span>Nurse.Com</b>
+							<b style="font-size:34px">Welcome to Book<span style="color: #f36302;">My</span>Nurse.Com</b>
 						</h1>
 						<p class="text-muted fs-6 fw-bold mb-2">
 							Select your home nursing professional without any hassle.
@@ -22,19 +24,22 @@
 							<input formControlName="name" type="text" id="name" class="form-control"
 								placeholder="Please Enter your name" required>
 						</div>
-						<div class="mb-2 d-flex align-items-center">
-							<label for="mobile" class="form-label fw-bold mb-0" style="width: 120px;">Mobile</label>
-							<input formControlName="mobile" type="tel" id="mobile" class="form-control"
+						<div class="mb-2">
+							<div class=" d-flex align-items-center">
+								<label for="mobile" class="form-label fw-bold mb-0" style="width: 120px;">Mobile</label>
+								<input formControlName="mobile" type="tel" id="mobile" class="form-control"
 								placeholder="Please Enter your mobile number" pattern="\d{10}" maxlength="10" required
 								onkeypress="return /[0-9]/.test(event.key)">
-								<div class="text-danger" *ngIf="f['mobile'].touched && f['mobile'].invalid"> 
-									<div *ngIf="f['mobile'].errors['required']">
-										Mobile number is required
-									</div>
-									<div *ngIf="f['mobile'].errors['pattern']">
-										Length should be 10
-									</div>
+							
+							</div>
+							<div style="position: relative;left: 100px;" class="text-danger" *ngIf="f['mobile'].touched && f['mobile'].invalid"> 
+								<div *ngIf="f['mobile'].errors['required']">
+									Mobile number is required
 								</div>
+								<div *ngIf="f['mobile'].errors['pattern']">
+									Length should be 10
+								</div>
+							</div>
 						</div>
 						<div class="mb-2 d-flex align-items-center">
 							<label for="nurseType" class="form-label fw-bold mb-0" style="width: 120px;">Looking
@@ -67,7 +72,7 @@
 						</div>
 						<div class="mb-2 d-flex align-items-center">
 							<label for="preferences" class="form-label fw-bold mb-0">Service options</label>
-							<select formControlName="preferences" id="preferences" class="form-select" required>
+							<select style="margin-left: 8px;" formControlName="preferences" id="preferences" class="form-select" required>
 								<option value="" selected>Select</option>
 								<option value="24hrs">24 Hours</option>
 								<option value="12hrs">12 Hours</option>
@@ -114,7 +119,7 @@
 			<div class="col-md-8">
 				<div class="section-header">
 					
-						<h2><b>Nursing Care Services at Home</b></h2>
+						<h2 style="text-align: center;"><b>Nursing Care Services at Home</b></h2>
 				
 					<p class="sub-title">
 						At BookMyNurse, we are your premier destination for professional and top-tier Home
@@ -124,6 +129,10 @@
 						our quality care services throughout India. Booking our services is simple; just call
 						our Hotline at <b>99 44 33 44 54</b>.
 					</p>
+					
+				</div>
+				<div class="decorative-divider">
+					<span>✦✦✦</span>
 				</div>
 			</div>
 
@@ -132,7 +141,7 @@
 				<div class="bg-info text-dark p-4 rounded shadow text-center w-100">
 					<h2 class="fw-bold"><b>Nurse Registration</b></h2>
 					<p class="rk">Register now to join the BookMyNurse platform.</p>
-					<a href="nurseregistrationform.html" class="btn btn-light btn-lg mt-3 text-dark fw-bold">
+					<a routerLink="/register" class="btn btn-light btn-lg mt-3 text-dark fw-bold">
 						Register Now
 					</a>
 				</div>
@@ -184,394 +193,48 @@
 
 			<div class="col-lg-8">
 				<div class="doctor-slider slider">
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-01.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
+					<div class="profile-widget" *ngFor="let user of users">
+					  <div class="doc-img">
+						<a routerLink="/nursebooking">
+						  <img class="img-fluid" alt="User Image" [src]="user.photoUrl">
+						</a>
+						<a href="javascript:void(0)" class="fav-btn">
+						  <i class="far fa-bookmark"></i>
+						</a>
+					  </div>
+					  <div class="pro-content">
+						<h3 class="title">
+						  <a routerLink="/nursebooking">{{ user.name }}</a>
+						  <i class="fas fa-check-circle verified"></i>
+						</h3>
+						<p class="speciality">{{ user.education }}</p>
+						<ul class="available-info">
+						  <li>
+							<i class="fas fa-map-marker-alt"></i> {{ user.address }}
+						  </li>
+						  <li>
+							<i class="far fa-clock"></i> Available from {{ user.from_time || 'N/A' }} - {{ user.to_time || 'N/A' }}
+						  </li>
+						  <li>
+							<i class="fas fa-medkit"></i> Specialization: {{ user.specialization }}
+						  </li>
+						  <li>
+							<i class="fas fa-language"></i> Languages Known: {{ user.languages.join(', ') }}
+						  </li>
+						</ul>
+						<div class="row row-sm text-center">
+						  <div class="col-12">
+							<a routerLink="/nursebooking" class="btn view-btn">View Profile</a>
+						  </div>
 						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Swapna</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MDS - Periodontology and Oral Implantology, BDS</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<span class="d-inline-block average-rating">(17)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i> Chennai, Tamil Nadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Periodontology
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<!-- Adjusted button layout -->
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn w-100">View Profile</a>
-								</div>
-							</div>
-						</div>
+					  </div>
 					</div>
-
-
-
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-02.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Manoj Elder</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">BDS, MDS - Oral & Maxillofacial Surgery</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(35)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i>Chennai,Tamilnadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization:Maxillofacial
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-03.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Kiara</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MBBS, MD - General Medicine, DNB - Cardiology</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(27)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i>Chennai,Tamilnadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Cardiology
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-04.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Kajal</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MBBS, MS - General Surgery, MCh - Urology</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(4)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i>Chennai,Tamilnadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Urology
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-05.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Manogar</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MBBS, MD - Ophthalmology, DNB - Ophthalmology</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(66)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i>Chennai,Tamilnadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Ophthalmology
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-06.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Samantha</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MS - Orthopaedics, MBBS, M.Ch - Orthopaedics</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(52)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i>Chennai,Tamilnadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Orthopaedics
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-07.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Hema</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MBBS, MD - General Medicine, DM - Neurology</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(43)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i>Chennai,Tamilnadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Neurology
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-
-					<!-- /Doctor Widget -->
-
-					<!-- Doctor Widget -->
-					<div class="profile-widget">
-						<div class="doc-img">
-							<a href="doctor-profile.html">
-								<img class="img-fluid" alt="User Image" src="assets/img/doctors/doctor-08.jpg">
-							</a>
-							<a href="javascript:void(0)" class="fav-btn">
-								<i class="far fa-bookmark"></i>
-							</a>
-						</div>
-						<div class="pro-content">
-							<h3 class="title">
-								<a href="doctor-profile.html">Abhajeet</a>
-								<i class="fas fa-check-circle verified"></i>
-							</h3>
-							<p class="speciality">MBBS, MD - Dermatology, Venereology & Leprosy</p>
-							<div class="rating">
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star filled"></i>
-								<i class="fas fa-star"></i>
-								<span class="d-inline-block average-rating">(49)</span>
-							</div>
-							<ul class="available-info">
-								<li>
-									<i class="fas fa-map-marker-alt"></i> Chennai,TamilNadu
-								</li>
-								<li>
-									<i class="far fa-clock"></i> Available from Mon - Sun
-								</li>
-								<li>
-									<i class="fas fa-medkit"></i> Specialization: Dermatology
-								</li>
-								<li>
-									<i class="fas fa-language"></i> Languages Known: English, Tamil
-								</li>
-							</ul>
-							<div class="row row-sm text-center">
-								<div class="col-12">
-									<a href="doctor-profile.html" class="btn view-btn">View Profile</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Doctor Widget -->
-				</div>
+				  </div>
+				  
 			</div>
+			
 		</div>
-	</div>
+	</div >
 </section>
 <!-- /Popular Section -->
 
@@ -579,7 +242,7 @@
 <section id="about-section" class="about-section pt-50"
 	style="background: linear-gradient(120deg, #f0f4f7, #d9e2ec);">
 	<div class="col-12 text-center">
-		<h1 class="us" id="aboutus"><b>About Us</b></h1>
+		<h1 class="us" ><b>About Us</b></h1>
 	</div>
 	<div class="container" style="max-width: 1200px; padding-left: 15px; padding-right: 15px;">
 		<div class="row">
@@ -645,17 +308,23 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	
 	<div class="about-img text-center">
+		
 		<img src="assets/img/ourstrength.png" alt="Our Strengths, Chennai Home Nursing" class="ourstrength">
+		<div id="servicess"></div>
 	</div>
+	
 </section>
 
 <!-- ========================= about-section end ========================= -->
 
 
 <!-- Availabe Features -->
-<section id="services-1" class="bg-white service-section pt-50">
+
+<section id="services" class="bg-white service-section pt-50">
 	<div class="container">
 		<div class="row">
 			<div class="col-xl-8 mx-auto">
@@ -788,7 +457,7 @@
 </section>
 <!-- Availabe Features -->
 
-<div id="successModal" class="custom-modal">
+<div id="successModalss" class="custom-modal">
 	<div class="custom-modal-content">
 		<img src="assets/img/BMN - Nurse.png" alt="Nurse" style="width: 150px; height: auto; margin-bottom: 15px;" />
 		<p style="color: #048990; font-size: 18px; font-weight: bold;">
@@ -803,6 +472,41 @@
 			(click)="redirectToNurse()">
 			Proceed
 		</button>
+	</div>
+</div>
+
+<!-- Chat Now Button -->
+<div class="chat-now" id="chatNowBtn">Chat<br>Now</div>
+
+<!-- Floating Buttons (Hidden Initially) -->
+<div class="floating-buttons" id="floatingBtns">
+	<a href="https://wa.me/9384009384" target="_blank" class="whatsapp-button">
+		<img src="assets/img/whatsapp-icon.jpeg" alt="WhatsApp">
+	</a>
+	<a href="tel:9944334454" class="phone-button">
+		<img src="assets/img/phone-icon.jpeg" alt="Call">
+	</a>
+	<button class="referral-button" id="referralBtn">
+		<img src="assets/img/referral-icon.jpeg" alt="Referral">
+	</button>
+</div>
+
+<!-- Referral Modal -->
+<div class="modal-rel" id="modal-rel">
+	<div class="modal-content-rel">
+		<div class="modal-header-rel">
+			<h3>Refer Nursing Station</h3>
+			<span class="close-btn" id="closeBtn-rel">&times;</span>
+		</div>
+		<form class="modal-form-rel" id="referralForm" action="https://script.google.com/macros/s/AKfycbzy0kmijmzFiH1vjWgu_ZozKg60See7v78V6-rW1waiF66f2g70MTnEgtZqKuIwOm1Ijw/exec" method="post">
+			<input type="text" placeholder="Please enter your Name" name="name" pattern="[A-Za-z\s]+" title="Only letters are allowed" required>
+
+			<input type="tel" placeholder="Please enter your Friend’s Mobile No" name="phone" pattern="[0-9]{10}" maxlength="10" title="Enter a 10-digit mobile number (numbers only)" required>
+		
+			<input type="email" placeholder="Please enter your Friend’s Email ID" name="email" required>
+		
+			<button type="submit">Submit</button>
+		</form>
 	</div>
 </div>
 <app-footer></app-footer>

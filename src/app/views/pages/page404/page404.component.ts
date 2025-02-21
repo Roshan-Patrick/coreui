@@ -11,11 +11,14 @@ import { NurseRegService } from '../service/nurse-reg.service';
 export class Page404Component {
 
   bookingForm: any;
+  users: any;
 
-  constructor(private fb: FormBuilder,private nurseService:NurseRegService, private router: Router) {}
+  constructor(private fb: FormBuilder,private nurseService:NurseRegService, private router: Router,) {}
   @HostListener('window:scroll', ['$event'])
 
   ngOnInit(): void {
+
+    this.getAllApproved();
     if(!this.bookingForm){
     this.bookingForm = this.fb.group({
       name: ['', Validators.required],
@@ -26,18 +29,18 @@ export class Page404Component {
       preferences: ['', Validators.required],
       agreement: [false, Validators.requiredTrue]
     });}
-  //   var st = window.pageYOffset;
-  //   // console.log(st);
-  //   var navbar = document.getElementsByTagName('nav')[0];
+    var st = window.pageYOffset;
+    // console.log(st);
+    var navbar = document.getElementsByTagName('nav')[0];
 
-  // //  console.log(navbar);
-  //  if(st > 95){
-  //   navbar.classList.add('header-pinned')
-  //  }else{
-  //   navbar.classList.remove('header-pinned');
-  //  }
-  // }
+  //  console.log(navbar);
+   if(st > 95){
+    navbar.classList.add('header-pinned')
+   }else{
+    navbar.classList.remove('header-pinned');
+   }
   }
+  
   onSubmit(): void {
     if (this.bookingForm.valid) {
       // Create a copy of the form value, excluding the `agreement` field
@@ -50,11 +53,11 @@ export class Page404Component {
   
       console.log(formData);
       this.nurseService
-        .nurseRegistration(formData) // Use the modified data
+        .nurseRegistration(formData) 
         .subscribe({
           next: (res) => {
             console.log('Success:', res);
-            const modal = document.getElementById('successModal');
+            const modal = document.getElementById('successModalss');
             if (modal) modal.classList.add('active');
             this.bookingForm.reset();
           },
@@ -64,7 +67,7 @@ export class Page404Component {
   }
 
   redirectToNurse() {
-    this.router.navigate(['/page/nurse']); 
+    this.router.navigate(['/nurseBooking']); 
   
     }
 
@@ -86,6 +89,17 @@ export class Page404Component {
       };
   
       return abbreviations[service] || "UN"; 
+    }
+
+    getAllApproved() {
+      this.nurseService.nurseRegistered('Approved').subscribe((res:any)=>{
+        console.log(res)
+        this.users = res.data.map((user: any) => ({
+          ...user,
+          // photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
+          photoUrl: `http://localhost:3000/${user.file_path}`,
+        }));
+      })
     }
 
 }

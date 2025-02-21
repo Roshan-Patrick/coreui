@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 // If you want to override variables do it here
 @import "variables";
-@import 'animate.css';
+// @import 'animate.css';
 
 $enable-ltr: true;
 $enable-rtl: true;
@@ -22,6 +22,8 @@ $enable-rtl: true;
 
 // If you want to add something do it here
 @import "custom";
+
+// @import 'ngx-toastr/toastr.css'; 
 
 
 .sidebar-nav .nav-link:hover {
@@ -146,36 +148,36 @@ Version      : 1.0
 html {
     height: 100%;
 }
-body {
-	background-color: #f8f9fa;
-	color: #272b41;
-    font-family: "Poppins",sans-serif;
-	font-size: 0.9375rem;
-    height: 100%;
-	overflow-x: hidden;
-}
-h1, h2, h3, h4, h5, h6 {
-	color: #272b41;
-	font-weight: 500;
-}
-.h1, h1 {
-    font-size: 2.25rem;
-}
-.h2, h2 {
-    font-size: 1.875rem;
-}
-.h3, h3 {
-    font-size: 1.5rem;
-}
-.h4, h4 {
-    font-size: 1.125rem;
-}
-.h5, h5 {
-    font-size: 1rem;
-}
-.h6, h6 {
-    font-size: 0.875rem;
-}
+// body {
+// 	background-color: #f8f9fa;
+// 	color: #272b41;
+//     font-family: "Poppins",sans-serif;
+// 	font-size: 0.9375rem;
+//     height: 100%;
+// 	overflow-x: hidden;
+// }
+// h1, h2, h3, h4, h5, h6 {
+// 	color: #272b41;
+// 	font-weight: 500;
+// }
+// .h1, h1 {
+//     font-size: 2.25rem;
+// }
+// .h2, h2 {
+//     font-size: 1.875rem;
+// }
+// .h3, h3 {
+//     font-size: 1.5rem;
+// }
+// .h4, h4 {
+//     font-size: 1.125rem;
+// }
+// .h5, h5 {
+//     font-size: 1rem;
+// }
+// .h6, h6 {
+//     font-size: 0.875rem;
+// }
 
 a {
     color: #212529;
@@ -2333,7 +2335,7 @@ html.menu-opened body {
 	/* font-size: 18px; */
     font-weight: 400;
     line-height: 28px;
-    color: #8C96A7;
+    color: #555 !important;
     /* margin: 0px; */
     /* max-width: 600px; */
 }
@@ -2534,7 +2536,7 @@ html.menu-opened body {
 }
 .section-doctor {
 	background-color: #f8f9fa;
-	padding: 80px 0;
+	padding: 0;
 }
 .section-doctor .section-header {
 	margin-bottom: 30px;
@@ -7540,37 +7542,36 @@ body {
 	  height: auto; /* Maintain aspect ratio */
 	}
   }
-
   .custom-submit-button {
-	background:linear-gradient(to right, #ffa500b3, #ffa500);
-    color: #f0f0f0; /* Orange text */
-    border: none;
-    font-weight: bold;
-    transition: all 0.8s ease; /* Smooth transition effect */
+	background-color: #048990; 
+	color: #f0f0f0; /* Orange text */
+	border: none;
+	font-weight: bold;
 	padding: 8px 18px;
-    border-radius: 5px;
+	border-radius: 5px;
+	transition: all 0.2s ease; /* Reduced transition duration for smoother effect */
   }
-
+  
+  .custom-submit-button:hover {
+	background-color: #f36302; /* Orange background on hover */ 
+	transition: all 0.2s ease; /* Keep transition duration consistent */
+	color: #ebe3ec;
+  }
+  
   .custom-submit-button:active {
 	transform: scale(0.95);
-    background:linear-gradient(to right, violet , #74287C,);
+	background-color: #f36302; 
   }
-  .custom-submit-button:focus{
+  
+  .custom-submit-button:focus {
 	outline: none !important;
   }
-
-
-  .custom-submit-button:not(:disabled):hover {
-    background: linear-gradient(to right, violet, #74287C)!important;
-    transition: all .4s ease;
-    color: #ebe3ec;
-  }
-
+  
   .custom-submit-button:not(:disabled):focus {
-    outline: none; /* Removes blue outline on focus */
-    box-shadow: none; /* Removes any shadow effect */
+	outline: none; /* Removes blue outline on focus */
+	box-shadow: none; /* Removes any shadow effect */
   }
-
+  
   .custom-submit-button:disabled {
 	background: #ddd;
 	color: #aaa !important;
@@ -8117,6 +8118,7 @@ body {
     display: inline-block; /* Makes the h1 behave like an inline element */
     border-bottom: 3px solid #048990; /* Green underline */
     padding-bottom: 5px; /* Optional: adds space between text and the underline */
+	margin-top: 20px;
 }
 
 .Bmn{
@@ -8142,75 +8144,78 @@ body {
 /*===========================
     About css 
 ===========================*/
-.about-section {
-	position: relative;
-	overflow: hidden;
-  }
-  
-  .about-section .about-down {
-	font-size: 1.4vw;
-	color: #f88137;
-  }
-  
-  .about-section .about-content p {
-	padding: 0 15px;
-	text-align: justify;
-  }
-  
-  @media only screen and (min-width: 992px) and (max-width: 1199px) {
-	.about-section .about-down {
-	  font-size: 1.9vw;
-	}
-  }
-  
-  @media only screen and (max-width: 770px) {
-	.about-section .about-down {
-	  font-size: 2.5vw;
-	}
-  
-	.about-section h2 {
-	  font-size: 5vw;
-	}
-  }
-  
-  @media only screen and (max-width: 767px) {
-	.about-section .about-content p {
-	  padding: 0;
-	}
-  
-	.about-section .about-down {
-	  font-size: 4.2vw;
-	}
-  
-  }
-  
-  @media only screen and (max-width: 430px) {
-	.about-section .about-down {
-	  font-size: 4.9vw;
-	}
-  
-	.about-section h2 {
-	  font-size: 5.4vw;
-	}
-  
-	.about-section h3 {
-	  font-size: 5vw;
-	}
-  }
-  
-  @media only screen and (max-width: 376px) {
-	.about-section h2 {
-	  font-size: 6vw;
-	}
-  
-	.about-section h3 {
-	  font-size: 6vw;
-	}
-  
-	.about-section .about-down {
-	  font-size: 5vw;
-	}
-  }
+#about-section {
+    padding: 10px 0;
+    background-color: #fff;
+}
+
+#about-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+#about-section .section-title h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+#about-section .section-title h2 b {
+    color: #ff6600; /* Retaining your original orange color for emphasis */
+}
+
+#about-section p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+}
+
+#about-section h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #333;
+}
+
+#about-section .about-down {
+    font-weight: bold;
+    color: #ff6600; /* Retaining orange for important highlights */
+}
+
+#about-section img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 30px;
+}
+
+#about-section .wow {
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-in-out forwards;
+}
+
+@keyframes fadeInUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design for About Section */
+@media (max-width: 768px) {
+    #about-section .section-title h2 {
+        font-size: 1.75rem;
+    }
+    #about-section h3 {
+        font-size: 1.3rem;
+    }
+    #about-section p {
+        font-size: 1rem;
+    }
+}
  
   .ourstrength {
     max-width: 100%;

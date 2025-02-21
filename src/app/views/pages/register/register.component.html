@@ -8,35 +8,51 @@
         <div class="row align-items-center mb-4">
           <div class="col-6 mb-3">
             <label for="name" class="form-label me-3 flex-shrink-0">Name *</label>
-            <c-input-group > 
+            <c-input-group>
               <span cInputGroupText>
                 <svg cIcon name="cilUser"></svg>
               </span>
               <input formControlName="name" type="text" id="name" name="name" class="form-control" required
-              placeholder="Please enter your name">
+                placeholder="Please enter your name">
             </c-input-group>
           </div>
           <div class="col-6 mb-3">
             <label for="aadhaar" class="form-label me-3 flex-shrink-0">Aadhaar Number *</label>
-            <c-input-group>   
+            <c-input-group>
               <span cInputGroupText>
                 <svg cIcon name="cilFingerprint"></svg>
-              </span> 
+              </span>
               <input formControlName="aadhaar" type="text" id="aadhaar" name="aadhaar" class="form-control" required
-              placeholder="Please enter your Aadhaar number" pattern="\d{12}" maxlength="12" required
-              onkeypress="return /[0-9]/.test(event.key)">
+                placeholder="Please enter your Aadhaar number" pattern="\d{12}" maxlength="12" required
+                onkeypress="return /[0-9]/.test(event.key)">
             </c-input-group>
+            <div class="text-danger" *ngIf="f['aadhaar'].touched && f['aadhaar'].invalid">
+              <div *ngIf="f['aadhaar'].errors['required']">
+                Aadhaar number is required
+              </div>
+              <div *ngIf="f['aadhaar'].errors['pattern']">
+                Length should be 12
+              </div>
+            </div>
           </div>
           <div class="col-6 mb-3">
             <label for="mobile" class="form-label me-3 flex-shrink-0">Mobile Number*</label>
-            <c-input-group>   
+            <c-input-group>
               <span cInputGroupText>
                 <svg cIcon name="cilMobile"></svg>
-              </span> 
-            <input formControlName="mobile" type="text" id="mobile" name="mobile" class="form-control nurse-inp" required
-              placeholder="Please enter your mobile number" min="1000000000" max="9999999999"
-              oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
+              </span>
+              <input formControlName="mobile" type="text" id="mobile" name="mobile" class="form-control nurse-inp"
+                required placeholder="Please enter your mobile number" min="1000000000" max="9999999999"
+                oninput="if(this.value.length > 10) this.value = this.value.slice(0, 10);">
             </c-input-group>
+            <div class="text-danger" *ngIf="f['mobile'].touched && f['mobile'].invalid">
+              <div *ngIf="f['mobile'].errors['required']">
+                Mobile number is required
+              </div>
+              <div *ngIf="f['mobile'].errors['pattern']">
+                Length should be 10
+              </div>
+            </div>
           </div>
 
           <div class="col-6 mb-3">
@@ -45,197 +61,265 @@
               <span cInputGroupText>
                 <svg cIcon name="cil-envelope-closed"></svg>
               </span>
-              <input formControlName="email" type="email" id="email" name="email" class="form-control nurse-inp" required
-              placeholder="Please enter your email ID">
+              <input formControlName="email" type="email" id="email" name="email" class="form-control nurse-inp"
+                required placeholder="Please enter your email ID">
             </c-input-group>
           </div>
 
-         <!-- Gender -->
-<div class="col-md-6 mb-3">
-  <label for="gender" class="form-label me-3 flex-shrink-0">Gender *</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cil-user"></svg> <!-- User icon for gender -->
-    </span>
-    <select formControlName="gender" id="gender" name="gender" class="form-select nurse-inp" required>
-      <option value="">Select</option>
-      <option value="male">Male</option>
-      <option value="female">Female</option>
-    </select>
-  </c-input-group>
-</div>
+          <!-- Gender -->
+          <div class="col-md-6 mb-3">
+            <label for="gender" class="form-label me-3 flex-shrink-0">Gender *</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cil-user"></svg> <!-- User icon for gender -->
+              </span>
+              <select formControlName="gender" id="gender" name="gender" class="form-select nurse-inp" required>
+                <option value="">Select</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </c-input-group>
+          </div>
 
-<!-- Date of Birth -->
-<div class="col-md-6 mb-3">
-  <label for="dob" class="form-label me-3 flex-shrink-0">Date of Birth *</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cil-calendar"></svg> <!-- Calendar icon for DOB -->
-    </span>
-    <input formControlName="dob" type="date" id="dob" name="dob" class="form-control nurse-inp" required />
-  </c-input-group>
-</div>
+          <!-- Date of Birth -->
+          <div class="col-md-6 mb-3">
+            <label for="dob" class="form-label me-3 flex-shrink-0">Date of Birth *</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cil-calendar"></svg> <!-- Calendar icon for DOB -->
+              </span>
+              <input formControlName="dob" type="date" id="dob" name="dob" class="form-control nurse-inp" required />
+            </c-input-group>
+          </div>
 
-<!-- Education -->
-<div class="col-md-6 mb-3">
-  <label for="education" class="form-label me-3 flex-shrink-0">Qualification *</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cilEducation"></svg> <!-- Education icon for qualification -->
-    </span>
-    <select formControlName="education" id="education" name="education" class="form-select nurse-inp" required>
-      <option value="">Please select your qualification</option>
-      <option value="A.N.M.,">A.N.M.,</option>
-      <option value="G.N.M.,">G.N.M.,</option>
-      <option value="B.Sc.,">B.Sc., Nursing</option>
-      <option value="M.Sc.,">M.Sc., Nursing</option>
-    </select>
-  </c-input-group>
-</div>
+          <!-- Education -->
+          <div class="col-md-6 mb-3">
+            <label for="education" class="form-label me-3 flex-shrink-0">Qualification *</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cilEducation"></svg> <!-- Education icon for qualification -->
+              </span>
+              <select formControlName="education" id="education" name="education" class="form-select nurse-inp"
+                required>
+                <option value="">Please select your qualification</option>
+                <option value="D.P.N.,">D.P.N.,</option>
+                <option value="A.N.M.,">A.N.M.,</option>
+                <option value="G.N.M.,">G.N.M.,</option>
+                <option value="B.Sc.,">B.Sc., Nursing</option>
+                <option value="M.Sc.,">M.Sc., Nursing</option>
+                <option value="Diploma Nursing,">Diploma Nursing,</option>
+              </select>
+            </c-input-group>
+          </div>
 
-<!-- Experience -->
-<div class="col-md-6 mb-3">
-  <label for="experience" class="form-label me-3 flex-shrink-0">Experience *</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cilBriefcase"></svg> <!-- Briefcase icon for experience -->
-    </span>
-    <input
-     formControlName="experience"
-      type="text"
-      id="experience"
-      name="experience"
-      class="form-control"
-      required
-      placeholder="Enter your experience"
-      maxlength="2"
-      pattern="\d{1,2}"
-      oninput="this.value = this.value.replace(/[^0-9]/g, '');"
-    />
-  </c-input-group>
-</div>
+          <!-- Experience -->
+          <div class="col-md-6 mb-3">
+            <label for="experience" class="form-label me-3 flex-shrink-0">Experience *</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cilBriefcase"></svg> <!-- Briefcase icon for experience -->
+              </span>
 
-<!-- Languages -->
-<div class="col-md-6 mb-3">
-  <label for="languages" class="form-label me-3 flex-shrink-0">Language Known *</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cil-language"></svg> <!-- Language icon -->
-    </span>
-    <select formControlName="languages" id="languages" name="languages" class="form-select" required>
-      <option value="">Select</option>
-      <option value="English">English</option>
-      <option value="Tamil">Tamil</option>
-      <option value="Hindi">Hindi</option>
-      <option value="Malayalam">Malayalam</option>
-      <option value="Telugu">Telugu</option>
-      <option value="Kannada">Kannada</option>
-      <option value="Urdu">Urdu</option>
-    </select>
-  </c-input-group>
-</div>
 
-<!-- Specialization -->
-<div class="col-md-6 mb-3">
-  <label for="specialization" class="form-label me-3 flex-shrink-0">Specialization*</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cil-medical-cross"></svg> <!-- Medical cross icon for specialization -->
-    </span>
-    <select formControlName="specialization" id="specialization" name="specialization" class="form-control" required>
-      <option value="">Please select your specialization</option>
-      <option value="Children Care Specialist">Children Care Specialist</option>
-      <option value="ICU Setup Specialist">ICU Specialist</option>
-      <option value="Elder Care Specialist">Elder Care Specialist</option>
-      <option value="Tracheostomy Specialist">Tracheostomy Specialist</option>
-      <option value="Stroke Care Specialist">Stroke Care Specialist</option>
-    </select>
-  </c-input-group>
-</div>
+              <input formControlName="experience" type="text" id="experience" name="experience" class="form-control"
+                required placeholder="Enter your experience" maxlength="2" pattern="\d{1,2}"
+                oninput="this.value = this.value.replace(/[^0-9]/g, '');" />
+            </c-input-group>
+          </div>
 
-<!-- Address -->
-<div class="col-12 mb-3">
-  <label for="address" class="form-label me-3 flex-shrink-0">Address*</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cil-home"></svg> <!-- Home icon for address -->
-    </span>
-    <textarea
-    formControlName="address"
-      id="address"
-      name="address"
-      class="form-control"
-      required
-      placeholder="Please enter your address"
-    ></textarea>
-  </c-input-group>
-</div>
+          <!-- Languages -->
+          <div class="col-md-6 mb-3">
+            <label for="languages" class="form-label me-3 flex-shrink-0">
+              Language Known *
+            </label>
 
-<!-- Base Location -->
-<div class="col-md-6 mb-3">
-  <label for="base-location" class="form-label">Base Location/City</label>
-  <c-input-group>
-    <span cInputGroupText>
-      <svg cIcon name="cil-map"></svg> <!-- Map icon for base location -->
-    </span>
-    <input
-      formControlName="base_location"
-      type="text"
-      id="base-location"
-      name="base_location"
-      class="form-control"
-      required
-      placeholder="Enter your location"
-    />
-  </c-input-group>
-</div>
+            <c-input-group class="dropdown">
+              <span cInputGroupText>
+                <svg cIcon name="cil-language"></svg>
+              </span>
 
-<div class="col-md-6 mb-3">
-  <label for="photo" class="form-label">Photo *</label>
-  <c-input-group>
-    <input
-    formControlName="photo"
-    style="padding-top: 10px !important;"
-      type="file"
-      name="photo"
-      id="photo"
-      (change)="onFileChange($event)"
-      class="form-control"
-      accept=".jpg,.jpeg,.png"
-    />
-  </c-input-group>
-  <small *ngIf="imageValidationError" class="text-danger">
-    {{ imageValidationError }}
-  </small>
-</div>
+              <div #dropdownContainer class="dropdown-wrapper" style="width: 88%;">
+
+                <input type="text" class="form-control custom-input" [value]="selectedLanguages.join(', ')" readonly
+                  (click)="toggleDropdown()" placeholder="Select Languages" />
+
+
+                <div class="dropdown-menu show custom-dropdown" *ngIf="dropdownOpen">
+                  <c-form-check *ngFor="let language of languageOptions">
+                    <input type="checkbox" cFormCheckInput [id]="language.value" [value]="language.value"
+                      [checked]="selectedLanguages.includes(language.value)"
+                      (change)="toggleSelection(language.value, $event)" />
+                    <label cFormCheckLabel [for]="language.value">
+                      {{ language.name }}
+                    </label>
+                  </c-form-check>
+                </div>
+              </div>
+            </c-input-group>
+
+          </div>
+
+
+          <!-- Specialization -->
+          <div class="col-md-6 mb-3">
+            <label for="specialization" class="form-label me-3 flex-shrink-0">Specialization*</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cil-medical-cross"></svg> <!-- Medical cross icon for specialization -->
+              </span>
+              <select formControlName="specialization" id="specialization" name="specialization" class="form-control"
+                required>
+                <option value="">Please select your specialization</option>
+                <option value="Children Care Specialist">Children Care Specialist</option>
+                <option value="ICU Setup Specialist">ICU Specialist</option>
+                <option value="Elder Care Specialist">Elder Care Specialist</option>
+                <option value="Tracheostomy Specialist">Tracheostomy Specialist</option>
+                <option value="Stroke Care Specialist">Stroke Care Specialist</option>
+              </select>
+            </c-input-group>
+          </div>
+
+          <div class="col-md-12 mb-3">
+            <label for="serviceopt" class="form-label me-3 flex-shrink-0">Service Options *</label>
+            <c-input-group class="dropdown">
+              <span cInputGroupText>
+                <svg cIcon name="cilList"></svg> <!-- Education icon for qualification -->
+              </span>
+              <!-- Multi-select Dropdown for Service Options -->
+              <div #serviceDropdownContainer class="dropdown-wrapper" style="width: 94%;">
+                <input type="text" class="form-control custom-input" [value]="selectedUser.join(', ')"
+                  readonly (click)="toggleServiceDropdown()" placeholder="Select Service Options" />
+
+                <!-- Dropdown Menu -->
+                <div class="dropdown-menu show custom-dropdown-service" *ngIf="serviceDropdownOpen">
+                  <c-form-check *ngFor="let option of serviceOptions">
+                    <input type="checkbox" cFormCheckInput [id]="option.value" [value]="option.value"
+                      [checked]="selectedUser.includes(option.value)"
+                      (change)="toggleServiceSelection(option.value, $event)" />
+                    <label cFormCheckLabel [for]="option.value">
+                      {{ option.name }}
+                    </label>
+                  </c-form-check>
+                </div>
+              </div>
+
+            </c-input-group>
+          </div>
+
+
+          <div class="col-md-6 mb-3">
+            <label for="from-time" class="form-label">From Time</label>
+            <div class="input-group">
+              <input 
+                id="from-time"
+                type="text"
+                class="form-control"
+                formControlName="fromTime"
+                [ngxTimepicker]="fromTimePicker"
+                readonly
+              />
+              <ngx-material-timepicker-toggle [for]="fromTimePicker"></ngx-material-timepicker-toggle>
+              <ngx-material-timepicker #fromTimePicker></ngx-material-timepicker>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-3">
+            <label for="to-time" class="form-label">To Time</label>
+            <div class="input-group">
+              <input 
+                id="to-time"
+                type="text"
+                class="form-control"
+                formControlName="toTime"
+                [ngxTimepicker]="toTimePicker"
+                readonly
+              />
+              <ngx-material-timepicker-toggle [for]="toTimePicker"></ngx-material-timepicker-toggle>
+              <ngx-material-timepicker #toTimePicker></ngx-material-timepicker>
+            </div>
+          </div>
+          
+          
+
+
+          <!-- Address -->
+          <div class="col-12 mb-3">
+            <label for="address" class="form-label me-3 flex-shrink-0">Address*</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cil-home"></svg> <!-- Home icon for address -->
+              </span>
+              <textarea style="padding-top: 8px !important;" formControlName="address" id="address" name="address"
+                class="form-control" required placeholder="Please enter your address"></textarea>
+            </c-input-group>
+          </div>
+
+          <!-- Base Location -->
+          <div class="col-md-6 mb-3">
+            <label for="base-location" class="form-label">Base Location/City</label>
+            <c-input-group>
+              <span cInputGroupText>
+                <svg cIcon name="cil-map"></svg> <!-- Map icon for base location -->
+              </span>
+              <input formControlName="base_location" type="text" id="base-location" name="base_location"
+                class="form-control" required placeholder="Enter your location" />
+            </c-input-group>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label for="photo" class="form-label">Photo *</label>
+            <c-input-group>
+              <input formControlName="photo" style="padding-top: 10px !important;" type="file" name="photo" id="photo"
+                (change)="onFileChange($event)" class="form-control" accept=".jpg,.jpeg,.png" />
+            </c-input-group>
+            <small *ngIf="imageValidationError" class="text-danger">
+              {{ imageValidationError }}
+            </small>
+          </div>
 
           <div class="col-12">
             <div class="form-check">
-              <input formControlName="declaration" type="checkbox" id="declaration" name="declaration" class="form-check-input"
-                required>
+              <input formControlName="declaration" type="checkbox" id="declaration" name="declaration"
+                class="form-check-input" required>
               <label for="declaration" class="form-check-label">
-                I hereby declare that the information provided in this form is true, correct,
-                and complete to the best of my knowledge and belief. I understand that any false
-                or misleading information may lead to the rejection of my application or other
-                legal actions.
-                <br>I agree to abide by the
-                <a href="user-agreement.html" target="_blank"
-                  style="color: #333; text-decoration: underline;">user agreement</a>
-                and
-                <a href="term-condition.html" target="_blank"
-                  style="color: #333; text-decoration: underline;">terms and conditions</a> of
-                BMN as stated in the document.
-              </label>
+                I hereby declare that the information provided in this form is true, correct, and complete to the best
+                of my knowledge and belief. I understand that any false or misleading information may lead to the
+                rejection of my application or other legal actions.<br>I agree to abide by the <a
+                  href="term-condition.html" target="_blank" style="color: #333; text-decoration: underline;">terms and
+                  conditions</a> of BMN as stated in the document.</label>
             </div>
           </div>
           <div class="col-12">
-          <button type="submit" class="btn btn-success w-100" [disabled]="nurseRegistrationForm.invalid || !photoFileValid">
-            Submit
-          </button>
+            <button type="submit" class="custom-submit-button w-100"
+              [disabled]="nurseRegistrationForm.invalid || !photoFileValid">
+              Submit
+            </button>
           </div>
         </div>
       </form>
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>
+
+<div id="successModals" class="custom-modal">
+  <div class="custom-modal-content">
+    <img src="assets/img/BMN - Nurse.png" alt="Nurse" style="width: 150px; height: auto; margin-bottom: 15px;" />
+    <img src="assets/img/bmn-app-qr.png" alt="QR Code"
+      style="width: 120px; height: 120px; border: 4px solid orange; border-radius: 10px;">
+    <p style="color: #048990; font-size: 18px; font-weight: bold;">
+      Dear Sir/Madam,
+    </p>
+    <p style="color: #333; font-size: 16px;">
+      Thanks for registering with BookMyNurse.com. Please check your mail for the acknowledgment, and our team will get
+      back to you shortly.
+      Please download our BookMyNurse mobile app to stay connected with us.
+    </p>
+    <button id="closeModal"
+      style="background-color: #f36302; color: #fff; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;"
+      (click)="redirectToNurse()">
+      Proceed
+    </button>
+  </div>
+</div>

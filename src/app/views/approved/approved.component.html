@@ -1,0 +1,222 @@
+<c-row>
+  <c-col xs>
+    <c-card style="padding: 0 !important;" class="mb-4 nurse-card">
+      <c-card-header class="table-header">Approved</c-card-header>
+      <c-card-body style="padding: 0 !important;">
+        <table [hover]="true" [responsive]="true" [striped]="true" cTable class="mb-4 border table-styled ">
+          <thead cTableColor="light">
+            <tr>
+              <th class="text-center">
+                <svg cIcon name="cilPeople"></svg>
+              </th>
+              <th class="text-center">Name</th>
+              <th class="text-center">Aadhaar</th>
+              <th class="text-center">Mobile</th>
+              <th class="text-center">Email</th>
+              <th class="text-center">Gender</th>
+              <th class="text-center">DOB</th>
+              <th class="text-center">Qualification</th>
+              <th class="text-center">Experience</th>
+              <th class="text-center">Languages</th>
+              <th class="text-center">Specialization</th>
+              <th class="text-center">Address</th>
+              <th class="text-center text-nowrap">Service Options</th>
+              <th class="text-center text-nowrap">Base Location</th>
+              <th class="text-center text-nowrap">From</th>
+              <th class="text-center text-nowrap">To</th>
+              <th class="text-center">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; index as i">
+              <td class="text-center">
+                <c-avatar size="xl" src="{{ user.photoUrl }}"></c-avatar>
+              </td>
+              <td class="text-center">
+                <div>{{ user.name }}</div>
+              </td>
+              <td>
+                <div>{{ user.aadhaar }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.mobile }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.email }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.gender }}</div>
+              </td>
+              <td>
+                <div class="text-nowrap">{{ user.dob | date: 'dd-MM-yyyy' }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.education }}</div>
+              </td>
+              <td>
+                <div>{{ user.experience }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.languages }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.specialization }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.address }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.serviceopt }}</div>
+              </td>
+              <td class="text-center">
+                <div>{{ user.base_location }}</div>
+              </td>
+              <td class="text-nowrap">
+                <div>{{ user.from_time }}</div>
+              </td>
+              <td class="text-nowrap">
+                <div>{{ user.to_time }}</div>
+              </td>
+              <td class="text-center">
+                <div class="button-container">
+
+                  <button (click)="onEdit(user)" [cModalToggle]="'fullScreenSm'" cButton color="secondary">
+                    <svg cIcon class="me-2" name="cil-bell"></svg>
+                    Edit
+                  </button>
+                  <button (click)="onDelete(user.id)" [cModalToggle]="'fullScreenSmdelete'" cButton color="danger">
+                    <svg cIcon class="me-2" name="cil-bell"></svg>
+                    Delete
+                  </button>
+                </div>
+
+                <!-- <div *ngIf="user.approval_status === 'Approved'">
+                    <div class="button-container">
+  
+                      <button disabled [cModalToggle]="'fullScreenSmdelete'" cButton color="secondary">
+                        <svg cIcon class="me-2" name="cil-bell"></svg>
+                        Approved
+                      </button>
+                    </div>
+                  </div>
+                  <div *ngIf="user.approval_status === 'Rejected'">
+                    <div class="button-container">
+  
+                      <button disabled [cModalToggle]="'fullScreenSmdelete'" cButton color="danger">
+                        <svg cIcon class="me-2" name="cil-bell"></svg>
+                        Rejected
+                      </button>
+                    </div>
+                  </div> -->
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </c-card-body>
+    </c-card>
+  </c-col>
+</c-row>
+
+
+<c-modal #fullScreenSm fullscreen="sm" id="fullScreenSm">
+  <c-modal-header>
+    <h5 cModalTitle>Edit Details</h5>
+    <button [cModalToggle]="'fullScreenSm'" cButtonClose></button>
+  </c-modal-header>
+  <c-modal-body>
+    <!-- Modal form -->
+    <form (ngSubmit)="updateUser()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" id="name" class="form-control" [(ngModel)]="selectedUser.name" name="name" />
+      </div>
+      <div class="mb-3">
+        <label for="mobile" class="form-label">Aadhaar</label>
+        <input type="text" id="mobile" class="form-control" [(ngModel)]="selectedUser.aadhaar" name="mobile" />
+      </div>
+      <div class="mb-3">
+        <label for="gender" class="form-label">Mobile</label>
+        <input type="text" id="gender" class="form-control" [(ngModel)]="selectedUser.mobile" name="gender" />
+      </div>
+      <div class="mb-3">
+        <label for="location" class="form-label">Email</label>
+        <input type="text" id="location" class="form-control" [(ngModel)]="selectedUser.email" name="location" />
+      </div>
+      <div class="mb-3">
+        <label for="services" class="form-label">Gender</label>
+        <input type="text" id="gender" class="form-control" [(ngModel)]="selectedUser.gender" name="services" />
+      </div>
+      <div class="mb-3">
+        <label for="dob" class="form-label">DOB</label>
+        <input type="date" id="dob" class="form-control" [(ngModel)]="selectedUser.dob" name="dob" />
+      </div>
+      <div class="mb-3">
+        <label for="education" class="form-label">Education</label>
+        <input type="text" id="education" class="form-control" [(ngModel)]="selectedUser.education" name="education" />
+      </div>
+      <div class="mb-3">
+        <label for="experience" class="form-label">Experience</label>
+        <input type="text" id="experience" class="form-control" [(ngModel)]="selectedUser.experience"
+          name="experience" />
+      </div>
+      <div class="mb-3 position-relative">
+        <label for="languages" class="form-label">Languages</label>
+
+        <div #dropdownContainer class="dropdown-wrapper">
+
+          
+          <!-- Input Field (readonly, shows selected values) -->
+          <input type="text" class="form-control custom-input" [value]="selectedUser.languages.join(', ')" readonly
+          (click)="toggleDropdown()" placeholder="Select Languages" />
+          
+          <!-- Dropdown Menu -->
+          <div class="dropdown-menu show custom-dropdown" *ngIf="dropdownOpen">
+            <c-form-check *ngFor="let language of languageOptions">
+              <input type="checkbox" id="languages" cFormCheckInput [id]="language.value" [value]="language.value"
+              [checked]="selectedUser.languages.includes(language.value)"
+              (change)="toggleSelection(language.value, $event)" />
+              <label cFormCheckLabel [for]="language.value">
+                {{ language.name }}
+              </label>
+            </c-form-check>
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="specialization" class="form-label">Specialization</label>
+        <input type="text" id="specialization" class="form-control" [(ngModel)]="selectedUser.specialization"
+          name="specialization" />
+      </div>
+      <div class="mb-3">
+        <label for="serviceopt" class="form-label">Service Options</label>
+        <input type="text" id="serviceopt" class="form-control" [(ngModel)]="selectedUser.serviceopt" name="serviceopt" />
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input type="text" id="address" class="form-control" [(ngModel)]="selectedUser.address" name="address" />
+      </div>
+      <div class="mb-3">
+        <label for="base_location" class="form-label">Base Location</label>
+        <input type="text" id="base_location" class="form-control" [(ngModel)]="selectedUser.base_location"
+          name="base_location" />
+      </div>
+      <div class="mb-3">
+        <label for="from_time" class="form-label">From</label>
+        <input type="text" id="from_time" class="form-control" [(ngModel)]="selectedUser.from_time"
+          name="from_time" />
+      </div>
+      <div class="mb-3">
+        <label for="to_time" class="form-label">Base Location</label>
+        <input type="text" id="to_time" class="form-control" [(ngModel)]="selectedUser.to_time"
+          name="to_time" />
+      </div>
+      <button type="submit" cButton color="primary" [cModalToggle]="'fullScreenSm'"
+        (click)="updateUser()">Submit</button>
+    </form>
+  </c-modal-body>
+</c-modal>

@@ -48,12 +48,43 @@ nurseRegistrationDetails(formData: FormData):Observable<any>{
   );
 }
 
-nurseRegistered():Observable<any>{
-  return this.http.get(this.baseUrl+'register/registrations',{headers:this.headers})
+nurseRegistered(approvalStatus?: string):Observable<any>{
+
+  let url = `${this.baseUrl}register/registrations`;
+  if (approvalStatus) {
+    url += `?approval_status=${approvalStatus}`;
+  }
+    // console.log(url)
+  return this.http.get(url,{headers:this.headers})
   .pipe(
     catchError(this.errorHandler)
   );
 }
+
+
+updateApprovalStatus(id: number, status: 'Approved' | 'Rejected'): Observable<any> {
+  return this.http.put(this.baseUrl+ 'register/updateApproval', { id, status })
+  .pipe(
+    catchError(this.errorHandler)
+  );
+
+}
+
+// ✅ Revert approval status to "Pending"
+revertApprovalStatus(id: number): Observable<any> {
+  return this.http.put(this.baseUrl+ 'register/revertApproval', { id })
+  .pipe(
+    catchError(this.errorHandler)
+  );
+}
+
+editNurse(id: any, formData: any): Observable<any> {
+  return this.http.put(this.baseUrl+`register/editNurse/${id}`, formData).pipe(
+    catchError(this.errorHandler)
+  );
+}
+
+
 
 
 

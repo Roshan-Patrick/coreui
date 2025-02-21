@@ -2487,7 +2487,7 @@ html.menu-opened body {
 }
 .section-doctor {
 	background-color: #f8f9fa;
-	padding: 80px 0;
+	padding: 0;
 }
 .section-doctor .section-header {
 	margin-bottom: 30px;
@@ -7543,7 +7543,7 @@ body {
 
 /* Default Background Styling */
 .section-search {
-    background-image: linear-gradient(180deg, #eaf4fc 0%, #ffffff 100%), url('assets/img/BMN%20Form.png');
+    /* background-image: linear-gradient(180deg, #eaf4fc 0%, #ffffff 100%), url('assets/img/BMN20Form.png'); */
     background-size: 1550px 750px;
     background-repeat: no-repeat;
     background-position: center top;
@@ -7581,80 +7581,84 @@ body {
 
   /* ====services==== */
 /*  */
-.service-section {
-	position: relative;
-  }
-  
-  .service-section .service-item {
-	border-radius: 20px;
-	-webkit-box-shadow: 0 10px 35px rgba(0, 173, 181, 0.14);
-	box-shadow: 0 10px 35px rgba(0, 173, 181, 0.14);
-	-webkit-transition: all 0.3s ease-out 0s;
-	transition: all 0.3s ease-out 0s;
-	position: relative;
-	padding: 40px;
-	z-index: 1;
-  }
-  
-  .service-section .service-item .service-icon svg path {
-	-webkit-transition: all 0.3s ease-out 0s;
-	transition: all 0.3s ease-out 0s;
-  }
-  
-  .service-section .service-item .service-content h4 {
-	margin-bottom: 20px;
-  }
-  
-  .service-section .service-item .service-content p {
-	font-size: 16px;
-	line-height: 25px;
-	margin-bottom: 25px;
-  }
-  
-  .service-section .service-item .service-overlay {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	z-index: -1;
-	border-radius: 20px;
-	/* background: url("../img/service/service-1.png"); */
-	opacity: 0;
-	visibility: hidden;
-	-webkit-transform: scale(0.9);
-	transform: scale(0.9);
-	-webkit-transition: all 0.3s ease-out 0s;
-	transition: all 0.3s ease-out 0s;
-  }
-  
-  .service-section .service-item .service-overlay::after {
-	content: '';
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	border-radius: 20px;
-	background: #13A7F1;
-  }
-  
-  .service-section .service-item:hover .service-icon svg path {
-	fill: #fff;
-  }
-  
-  .service-section .service-item:hover .service-content h4,
-  .service-section .service-item:hover .service-content p,
-  .service-section .service-item:hover .service-content a {
-	color: #fff;
-  }
-  
-  .service-section .service-item:hover .service-overlay {
-	opacity: 1;
-	visibility: visible;
-	-webkit-transform: scale(1);
-	transform: scale(1);
-  }
+	/* Container for the services */
+	.service-section {
+		/* padding-top: 50px; */
+		padding-bottom: 50px;
+		background-color: #fff;
+	}
+
+	.service-item {
+		background: #f8f9fa; /* Light grey background */
+		padding: 20px;
+		border-radius: 10px;
+		text-align: center;
+		transition: all 0.3s ease-in-out;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+		position: relative;
+		overflow: hidden;
+		cursor: pointer;
+	}
+
+	/* Icon Image Styles */
+	.service-icon img {
+		max-width: 135px; /* Set size for icons */
+		height: auto;
+		transition: transform 0.3s ease-in-out;
+	}
+
+	/* Heading and Text Styles */
+	.service-item h4 {
+		color: #343a40; /* Black heading */
+		font-size: 18px;
+		font-weight: 600; /* Semi-bold */
+		margin-top: 15px;
+		margin-bottom: 10px;
+	}
+
+	.service-item p {
+		color: #6c757d; /* Grey text */
+		font-size: 14px;
+		margin: 0;
+	}
+
+	/* Hover Effects */
+	.service-item:hover {
+		background: #f36302; /* Change background to orange */
+		transform: translateY(-5px); /* Lift effect */
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Enhance shadow */
+	}
+    
+    .service-item:hover h4 {
+		color: #454545; /* Black heading */
+	}
+
+
+	.service-item:hover{
+		color: white; /* White heading on hover */
+	}
+
+	.service-item:hover p {
+		color: #FAF9F6; /* White text on hover */
+	}
+
+	/* .service-item:hover .service-icon img {
+		transform: scale(1.2); /* Slight zoom effect on icon */
+	*/
+
+	/* Responsive design */
+	.container {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	/* Mobile responsiveness */
+	@media (max-width: 767px) {
+		.service-item {
+			margin-bottom: 30px;
+		}
+	}
+
   
   @media only screen and (max-width: 769px) {
 	.service-section h1 {
@@ -8173,4 +8177,207 @@ body {
 /* Add top margin to the h2 element */
 h2.mb-15 {
     margin-top: 30px; /* Adjust the value as needed */
+}
+
+/* chat box */
+
+ /* Chat Now Button */
+ .chat-now {
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	background-color: #FF9800;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	cursor: pointer;
+	z-index: 1000;
+	animation: ring 1.5s infinite;
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+}
+
+/* Floating Button Container */
+.floating-buttons {
+	position: fixed;
+	bottom: 110px;
+	right: 30px;
+	display: none;
+	flex-direction: column;
+	gap: 10px;
+	z-index: 999;
+}
+
+/* Floating Buttons */
+.floating-buttons a, 
+.floating-buttons button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	height: 60px;
+	border-radius: 50%;
+	background-color: white;
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+	animation: ring 1.5s infinite;
+	border: none;
+	cursor: pointer;
+}
+
+.floating-buttons img {
+	width: 35px;
+	height: 35px;
+}
+
+/* Ringing Animation */
+@keyframes ring {
+	0% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+	50% { transform: scale(1.1); box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
+	100% { transform: scale(1); box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); }
+}
+
+/* Button Colors */
+.whatsapp-button {
+	background-color: #25D366; /* WhatsApp Green */
+}
+
+.phone-button {
+	background-color: #007BFF; /* Phone Blue */
+}
+
+.referral-button {
+	background-color: #FF9800; /* Referral Orange */
+}
+
+/* Modal Styling */
+.modal-rel {
+	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	justify-content: center;
+	align-items: center;
+}
+
+.modal-content-rel {
+	background: white;
+	padding: 20px;
+	width: 300px;
+	border-radius: 10px;
+	text-align: center;
+}
+
+.modal-header-rel {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 2px solid #ddd;
+	padding-bottom: 10px;
+}
+
+.modal-header-rel h3 {
+	margin: 0;
+	color: #FF9800;
+}
+
+.close-btn {
+	font-size: 24px;
+	cursor: pointer;
+	color: red;
+}
+
+.modal-form-rel input {
+	width: 100%;
+	padding: 10px;
+	margin: 10px 0;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.modal-form-rel button {
+	padding: 10px;
+	background-color: #FF9800;
+	color: white;
+	border: none;
+	cursor: pointer;
+	width: 100%;
+}
+
+.modal-form-rel button:hover {
+	background-color: #e68900;
+}
+
+
+/* Modal Styling */
+.modal-rel {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-content-rel {
+    background: white;
+    padding: 20px;
+    width: 300px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal-header-rel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+
+.modal-header-rel h3 {
+    margin: 0;
+    color: #FF9800;
+	font-size: 22px;
+}
+
+.close-btn {
+    font-size: 24px;
+    cursor: pointer;
+    color: red;
+}
+
+/* Input Fields */
+.modal-form-rel input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Submit Button */
+.modal-form-rel button {
+    padding: 10px;
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.modal-form-rel button:hover {
+    background-color: #e68900;
 }

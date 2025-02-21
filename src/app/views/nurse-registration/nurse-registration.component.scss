@@ -27,3 +27,23 @@ th,td{
     padding: 10px; /* Adjust padding as needed */
     vertical-align: middle; /* Align cell content vertically */
 }
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+  }
+  
+  button[cButton] {
+    display: flex;
+    align-items: center;
+    padding: 6px 12px; /* Proportional button size */
+    font-size: 14px; /* Adjust button text size */
+    border-radius: 4px; /* Rounded corners for buttons */
+    transition: background-color 0.3s, transform 0.3s;
+  }
+
+  button[cButton]:hover {
+    transform: translateY(-2px);
+    background-color: #0056b3;
+  }

@@ -14,6 +14,8 @@ import { AppComponent } from './app.component';
 
 // Import containers
 import { DefaultFooterComponent, DefaultHeaderComponent, DefaultLayoutComponent } from './containers';
+import { ToastrModule,ToastrService  } from 'ngx-toastr';
+
 
 import {
   AvatarModule,
@@ -41,6 +43,7 @@ import {
 import { IconModule, IconSetService } from '@coreui/icons-angular';
 import { TranslateModule } from '@ngx-translate/core';
 import { HttpClientModule } from '@angular/common/http';
+import { PagesModule } from './views/pages/pages.module';
 
 const APP_CONTAINERS = [
   DefaultFooterComponent,
@@ -80,7 +83,13 @@ const APP_CONTAINERS = [
     HttpClientModule ,
     ModalModule,
     PopoverModule,
-    TranslateModule.forRoot()
+    PagesModule,
+    TranslateModule.forRoot(),
+    ToastrModule.forRoot({ // Configure ToastrModule here (optional)
+      timeOut: 3000,
+      positionClass: 'toast-top-right', // Customize toastr position
+      preventDuplicates: true, // Prevent duplicate toasts
+    }),
     
   ],
   providers: [

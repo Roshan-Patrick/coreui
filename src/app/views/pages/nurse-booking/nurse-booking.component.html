@@ -1,0 +1,54 @@
+<app-header></app-header>
+    <!-- Search Bar -->
+<!-- Search Bar -->
+<div class="search-container">
+    <div class="input-group">
+      <span class="input-group-text">
+        <i class="fas fa-search"></i> <!-- Search Icon -->
+      </span>
+      <input type="text" class="form-control search-input" [(ngModel)]="searchText"
+             placeholder="Search by Name, Specialization, Qualification or Location"
+             (input)="onSearchInput()">
+    </div>
+  </div>
+  
+
+    <!-- Nurse Cards -->
+    <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let user of filteredNurses">
+            <div class="profile-widget">
+                <div class="doc-img">
+                    <a routerLink="/nursebooking">
+                        <img class="img-fluid" alt="User Image" [src]="user.photoUrl">
+                    </a>
+                    <a href="javascript:void(0)" class="fav-btn">
+                        <i class="far fa-bookmark"></i>
+                    </a>
+                </div>
+                <div class="pro-content">
+                    <h3 class="title">
+                        <a routerLink="/nursebooking">{{ user.name }}</a>
+                        <span class="age"> ({{ calculateAge(user.dob) }} yrs)</span>
+                        <i class="fas fa-check-circle verified"></i>
+                    </h3>
+                    <p class="speciality">{{ user.education }}</p>
+                    <ul class="available-info">
+                        <li><i class="fas fa-map-marker-alt"></i> {{ user.address }}</li>
+                        <li><i class="far fa-clock"></i> Available from {{ user.from_time || 'N/A' }} - {{ user.to_time
+                            || 'N/A' }}</li>
+                        <li><i class="fas fa-medkit"></i> Specialization: {{ user.specialization }}</li>
+                        <li><i class="fas fa-language"></i> Languages Known: {{ user.languages.join(', ') }}</li>
+                    </ul>
+                    <div class="row row-sm text-center">
+                        <div class="col-12">
+                            <a routerLink="/nursebooking" class="btn view-btn">View Profile</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+<app-footer></app-footer>

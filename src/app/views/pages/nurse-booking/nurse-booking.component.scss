@@ -1,0 +1,30 @@
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0; /* Adds space above and below */
+  }
+  
+  .input-group {
+    width: 50%; /* Adjust width */
+    max-width: 500px; /* Prevents it from being too large */
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-input {
+    height: 45px;
+    font-size: 16px;
+    border-radius: 0 25px 25px 0;
+    border: 1px solid #ddd;
+    padding-left: 10px;
+  }
+  
+  .input-group-text {
+    background-color: #048990; /* Your theme color */
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 25px 0 0 25px;
+  }
+  
