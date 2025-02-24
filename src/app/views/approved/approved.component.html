@@ -25,6 +25,7 @@
               <th class="text-center text-nowrap">From</th>
               <th class="text-center text-nowrap">To</th>
               <th class="text-center">Actions</th>
+              <th class="text-center">Availability</th>
             </tr>
           </thead>
           <tbody>
@@ -79,38 +80,44 @@
               </td>
               <td class="text-center">
                 <div class="button-container">
-
-                  <button (click)="onEdit(user)" [cModalToggle]="'fullScreenSm'" cButton color="secondary">
+                  <button (click)="onEdit(user)" [cModalToggle]="'fullScreenSm'" cButton style="background-color: #17a2b8; color: white;">
                     <svg cIcon class="me-2" name="cil-bell"></svg>
                     Edit
                   </button>
-                  <button (click)="onDelete(user.id)" [cModalToggle]="'fullScreenSmdelete'" cButton color="danger">
+                  <button (click)="onDelete(user.id)" cButton style="background-color: #dc3545; color: white;">
                     <svg cIcon class="me-2" name="cil-bell"></svg>
                     Delete
                   </button>
                 </div>
-
-                <!-- <div *ngIf="user.approval_status === 'Approved'">
-                    <div class="button-container">
-  
-                      <button disabled [cModalToggle]="'fullScreenSmdelete'" cButton color="secondary">
-                        <svg cIcon class="me-2" name="cil-bell"></svg>
-                        Approved
-                      </button>
-                    </div>
-                  </div>
-                  <div *ngIf="user.approval_status === 'Rejected'">
-                    <div class="button-container">
-  
-                      <button disabled [cModalToggle]="'fullScreenSmdelete'" cButton color="danger">
-                        <svg cIcon class="me-2" name="cil-bell"></svg>
-                        Rejected
-                      </button>
-                    </div>
-                  </div> -->
-
-
               </td>
+              
+              <td class="text-center" [ngClass]="{'available-bg': user.availability === 'Available', 'busy-bg': user.availability === 'Busy', 'pending-bg': user.availability === 'Pending'}">
+                <div *ngIf="user.availability === 'Pending'">
+                  <div class="button-container">
+                    <button (click)="isAvailable(user)" [cModalToggle]="'fullScreenSmdelete'" cButton style="background-color: #ffc107; color: black;">
+                      <svg cIcon class="me-2" name="cil-bell"></svg>
+                      Pending
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="user.availability === 'Available'">
+                  <div class="button-container">
+                    <button (click)="isAvailable(user)" [cModalToggle]="'fullScreenSmdelete'" cButton style="background-color: #28a745; color: white;">
+                      <svg cIcon class="me-2" name="cil-bell"></svg>
+                      Available
+                    </button>
+                  </div>
+                </div>
+                <div *ngIf="user.availability === 'Busy'">
+                  <div class="button-container">
+                    <button (click)="isAvailable(user)" [cModalToggle]="'fullScreenSmdelete'" cButton style="background-color: #e63946; color: white;">
+                      <svg cIcon class="me-2" name="cil-bell"></svg>
+                      Busy
+                    </button>
+                  </div>
+                </div>
+              </td>
+              
             </tr>
           </tbody>
         </table>
@@ -168,17 +175,17 @@
 
         <div #dropdownContainer class="dropdown-wrapper">
 
-          
+
           <!-- Input Field (readonly, shows selected values) -->
           <input type="text" class="form-control custom-input" [value]="selectedUser.languages.join(', ')" readonly
-          (click)="toggleDropdown()" placeholder="Select Languages" />
-          
+            (click)="toggleDropdown()" placeholder="Select Languages" />
+
           <!-- Dropdown Menu -->
           <div class="dropdown-menu show custom-dropdown" *ngIf="dropdownOpen">
             <c-form-check *ngFor="let language of languageOptions">
               <input type="checkbox" id="languages" cFormCheckInput [id]="language.value" [value]="language.value"
-              [checked]="selectedUser.languages.includes(language.value)"
-              (change)="toggleSelection(language.value, $event)" />
+                [checked]="selectedUser.languages.includes(language.value)"
+                (change)="toggleSelection(language.value, $event)" />
               <label cFormCheckLabel [for]="language.value">
                 {{ language.name }}
               </label>
@@ -194,7 +201,8 @@
       </div>
       <div class="mb-3">
         <label for="serviceopt" class="form-label">Service Options</label>
-        <input type="text" id="serviceopt" class="form-control" [(ngModel)]="selectedUser.serviceopt" name="serviceopt" />
+        <input type="text" id="serviceopt" class="form-control" [(ngModel)]="selectedUser.serviceopt"
+          name="serviceopt" />
       </div>
       <div class="mb-3">
         <label for="address" class="form-label">Address</label>
@@ -207,16 +215,42 @@
       </div>
       <div class="mb-3">
         <label for="from_time" class="form-label">From</label>
-        <input type="text" id="from_time" class="form-control" [(ngModel)]="selectedUser.from_time"
-          name="from_time" />
+        <input type="text" id="from_time" class="form-control" [(ngModel)]="selectedUser.from_time" name="from_time" />
       </div>
       <div class="mb-3">
         <label for="to_time" class="form-label">Base Location</label>
-        <input type="text" id="to_time" class="form-control" [(ngModel)]="selectedUser.to_time"
-          name="to_time" />
+        <input type="text" id="to_time" class="form-control" [(ngModel)]="selectedUser.to_time" name="to_time" />
       </div>
       <button type="submit" cButton color="primary" [cModalToggle]="'fullScreenSm'"
         (click)="updateUser()">Submit</button>
     </form>
   </c-modal-body>
+</c-modal>
+
+<c-modal #fullScreenSmdelete fullscreen="sm" id="fullScreenSmdelete">
+  <c-modal-header>
+    <h5 cModalTitle>Delete User?</h5>
+    <!-- <button [cModalToggle]="'fullScreenSmdelete'" cButtonClose></button> -->
+  </c-modal-header>
+  <c-modal-body>
+    <div style="margin-bottom: 8px;">
+      Ensure the Availability of the Nurse
+    </div>
+    <c-form-check inline>
+      <input [(ngModel)]="selectedUser.availability" cFormCheckInput checked id="radioinline1" name="radioinline"
+        type="radio" value="Available" />
+      <label cFormCheckLabel for="radioinline1">Available</label>
+    </c-form-check>
+    <c-form-check inline>
+      <input [(ngModel)]="selectedUser.availability" cFormCheckInput id="radioinline2" name="radioinline" type="radio"
+        value="Busy" />
+      <label cFormCheckLabel for="radioinline2">Busy</label>
+    </c-form-check>
+  </c-modal-body>
+  <c-modal-footer>
+    <button [cModalToggle]="'fullScreenSmdelete'" cButton color="secondary">
+      Close
+    </button>
+    <button (click)="onApproveBooking()" [cModalToggle]="'fullScreenSmdelete'" cButton color="danger">Submit</button>
+  </c-modal-footer>
 </c-modal>

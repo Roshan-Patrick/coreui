@@ -1,53 +1,71 @@
 <app-header></app-header>
-    <!-- Search Bar -->
-<!-- Search Bar -->
+
 <div class="search-container">
     <div class="input-group">
-      <span class="input-group-text">
-        <i class="fas fa-search"></i> <!-- Search Icon -->
-      </span>
-      <input type="text" class="form-control search-input" [(ngModel)]="searchText"
-             placeholder="Search by Name, Specialization, Qualification or Location"
-             (input)="onSearchInput()">
+        <span class="input-group-text">
+            <i class="fas fa-search"></i> <!-- Search Icon -->
+        </span>
+        <input type="text" class="form-control search-input" [(ngModel)]="searchText"
+            placeholder="Search by Name, Specialization, Qualification or Location" (input)="onSearchInput()">
     </div>
-  </div>
-  
+</div>  
 
-    <!-- Nurse Cards -->
-    <div class="row">
-        <div class="col-md-4 mb-4" *ngFor="let user of filteredNurses">
-            <div class="profile-widget">
-                <div class="doc-img">
-                    <a routerLink="/nursebooking">
-                        <img class="img-fluid" alt="User Image" [src]="user.photoUrl">
+<div class="row">
+    <div class="col-md-4 mb-4 row-align" *ngFor="let user of filteredNurses">
+        <div class="profile-widget" 
+             [ngClass]="{'busy-card': user.availability === 'Busy', 'available-card': user.availability === 'Available'}">
+            
+            <!-- Status Inside the Card -->
+            <div class="availability-status">
+                <span [ngClass]="{'available-text': user.availability === 'Available', 'busy-text': user.availability === 'Busy'}">
+                    {{ user.availability }}
+                </span>
+            </div>
+
+            <!-- Profile Image -->
+            <div class="doc-img">
+                <a routerLink="/nursebooking" [ngClass]="{'disabled-link': user.availability === 'Busy'}">
+                    <img class="img-fluid" alt="User Image" [src]="user.photoUrl">
+                </a>
+                <a href="javascript:void(0)" class="fav-btn">
+                    <i class="far fa-bookmark"></i>
+                </a>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="pro-content">
+                <h3 class="title">
+                    <a style="text-decoration: none;" routerLink="/nursebooking" [ngClass]="{'disabled-link': user.availability === 'Busy'}">
+                        {{ user.name }}
                     </a>
-                    <a href="javascript:void(0)" class="fav-btn">
-                        <i class="far fa-bookmark"></i>
-                    </a>
-                </div>
-                <div class="pro-content">
-                    <h3 class="title">
-                        <a routerLink="/nursebooking">{{ user.name }}</a>
-                        <span class="age"> ({{ calculateAge(user.dob) }} yrs)</span>
-                        <i class="fas fa-check-circle verified"></i>
-                    </h3>
-                    <p class="speciality">{{ user.education }}</p>
-                    <ul class="available-info">
-                        <li><i class="fas fa-map-marker-alt"></i> {{ user.address }}</li>
-                        <li><i class="far fa-clock"></i> Available from {{ user.from_time || 'N/A' }} - {{ user.to_time
-                            || 'N/A' }}</li>
-                        <li><i class="fas fa-medkit"></i> Specialization: {{ user.specialization }}</li>
-                        <li><i class="fas fa-language"></i> Languages Known: {{ user.languages.join(', ') }}</li>
-                    </ul>
-                    <div class="row row-sm text-center">
-                        <div class="col-12">
-                            <a routerLink="/nursebooking" class="btn view-btn">View Profile</a>
-                        </div>
+                    <span class="age"> ({{ calculateAge(user.dob) }} yrs)</span>
+                    <i class="fas fa-check-circle verified"></i>
+                </h3>
+                <p class="speciality">{{ user.education }}</p>
+
+                <ul class="available-info">
+                    <li><i class="fas fa-map-marker-alt"></i> {{ user.address }}</li>
+                    <li [ngStyle]="{'display': user.availability === 'Busy' ? 'none' : 'block'}"><i class="far fa-clock"></i> Available from {{ user.from_time || 'N/A' }} - {{ user.to_time || 'N/A' }}</li>
+                    <li><i class="fas fa-medkit"></i> Specialization: {{ user.specialization }}</li>
+                    <li><i class="fas fa-language"></i> Languages Known: {{ user.languages.join(', ') }}</li>
+                </ul>
+
+                <!-- View Profile Button -->
+                <div class="row row-sm text-center">
+                    <div class="col-12">
+                        <a routerLink="/nursebooking" class="btn view-btn"
+                            [ngClass]="{'disabled-link': user.availability === 'Busy'}">
+                            Book Now
+                        </a>
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
+</div>
+
+
 
 
 

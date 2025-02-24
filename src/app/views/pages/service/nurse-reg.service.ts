@@ -70,6 +70,14 @@ updateApprovalStatus(id: number, status: 'Approved' | 'Rejected'): Observable<an
 
 }
 
+updateAvailableStatus(id: number, status: 'Available' | 'Busy'): Observable<any> {
+  return this.http.put(this.baseUrl+ 'register/updateAvailable', { id, status })
+  .pipe(
+    catchError(this.errorHandler)
+  );
+
+}
+
 // ✅ Revert approval status to "Pending"
 revertApprovalStatus(id: number): Observable<any> {
   return this.http.put(this.baseUrl+ 'register/revertApproval', { id })

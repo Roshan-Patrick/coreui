@@ -82,3 +82,25 @@ th,td{
   transform: translateX(-50%); /* Adjust center alignment */
   font-size: 14px; /* Reduce font size */
 }
+
+
+.available-bg {
+  background-color: #d4edda; /* Light Green */
+  border: none;
+  // border-radius: 5px;
+  padding: 5px;
+}
+
+.busy-bg {
+  background-color: #f8d7da; /* Light Red */
+  border: none;
+  // border-radius: 5px;
+  padding: 5px;
+}
+
+.pending-bg {
+  background-color: #fff3cd; /* Light Yellow */
+  border: none;
+  // border-radius: 5px;
+  padding: 5px;
+}

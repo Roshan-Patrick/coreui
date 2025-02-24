@@ -32,7 +32,13 @@ export class AppComponent implements OnInit {
   }
   ngAfterViewInit() {
     setTimeout(() => {
-      $('.doctor-slider').slick({
+      const slider = $('.doctor-slider');
+  
+      if (slider.hasClass('slick-initialized')) {
+        slider.slick('unslick'); // Destroy if already initialized
+      }
+  
+      slider.slick({
         slidesToShow: 3,
         slidesToScroll: 1,
         arrows: true,
@@ -42,6 +48,23 @@ export class AppComponent implements OnInit {
         prevArrow: '<button type="button" class="slick-prev">Previous</button>',
         nextArrow: '<button type="button" class="slick-next">Next</button>',
       });
-    }, 1000); // Delay to ensure DOM is loaded
+  
+      $(window).on('resize', function () {
+        if (slider.hasClass('slick-initialized')) {
+          slider.slick('unslick');
+        }
+        slider.slick({
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          arrows: true,
+          dots: false,
+          autoplay: true,
+          autoplaySpeed: 5000,
+          prevArrow: '<button type="button" class="slick-prev">Previous</button>',
+          nextArrow: '<button type="button" class="slick-next">Next</button>',
+        });
+      });
+    }, 1000);
   }
+  
 }

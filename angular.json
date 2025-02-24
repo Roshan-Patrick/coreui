@@ -41,8 +41,9 @@
             "scripts": [
               "src/assets/js/jquery.min.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/slick.js",
-              "src/assets/js/script.js"
+              "src/assets/js/script.js",
+              "src/assets/js/slick.js"
+              
             ],
             "allowedCommonJsDependencies": ["chart.js"]
           },

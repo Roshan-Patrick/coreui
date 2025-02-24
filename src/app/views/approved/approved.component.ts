@@ -82,6 +82,8 @@ export class ApprovedComponent implements OnInit {
     serviceopt:'',
     address: '',
     base_location: '',
+    availability:''
+
   };
   ngOnInit(): void {
     this.getAllApproved();
@@ -91,8 +93,8 @@ export class ApprovedComponent implements OnInit {
       console.log(res)
       this.users = res.data.map((user: any) => ({
         ...user,
-        // photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
-        photoUrl: `http://localhost:3000/${user.file_path}`,
+        photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
+        // photoUrl: `http://localhost:3000/${user.file_path}`,
       }));
     })
   }
@@ -142,6 +144,10 @@ export class ApprovedComponent implements OnInit {
        } 
     }
 
+    isAvailable(user: any) {
+      this.selectedUser = { ...user }; // Clone the user to avoid direct modification
+    }
+
     updateUser() {
       if (!this.selectedUser.id) {
         alert('User ID is required');
@@ -177,5 +183,27 @@ export class ApprovedComponent implements OnInit {
         }
       );
     }
-    
+
+
+    onApproveBooking(): void {
+
+      
+   console.log(this.selectedUser.availability,this.selectedUser.id);
+   this.nurseService.updateAvailableStatus(this.selectedUser.id, this.selectedUser.availability).subscribe(
+    (response) => {
+      this.toastr.success('Availability Confirmed.');
+    },
+    (error) => {
+      this.toastr.error('Error in Nurse Availability.');
+      console.error('Error:', error);
+    },
+    () => {
+      setTimeout(() => {
+        this.getAllApproved(); 
+      }, 1000);
+    }
+  );
+  }
 }
+    
+

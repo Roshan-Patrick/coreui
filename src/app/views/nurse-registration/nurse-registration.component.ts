@@ -32,8 +32,8 @@ constructor(private nurseService:NurseRegService, private router: Router,private
     this.nurseService.nurseRegistered().subscribe((res:any)=>{
       this.users = res.data.map((user: any) => ({
         ...user,
-        // photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
-        photoUrl: `http://localhost:3000/${user.file_path}`,
+        photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
+        // photoUrl: `http://localhost:3000/${user.file_path}`,
       }));
     })
   }
