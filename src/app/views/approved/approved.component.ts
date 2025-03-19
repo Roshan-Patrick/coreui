@@ -93,8 +93,8 @@ export class ApprovedComponent implements OnInit {
       console.log(res)
       this.users = res.data.map((user: any) => ({
         ...user,
-        photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
-        // photoUrl: `http://localhost:3000/${user.file_path}`,
+        // photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
+        photoUrl: `http://localhost:3000/${user.file_path}`,
       }));
     })
   }

@@ -21,13 +21,13 @@
 					<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
 						<div class="mb-2 d-flex align-items-center">
 							<label for="name" class="form-label fw-bold mb-0" style="width: 120px;">Name</label>
-							<input formControlName="name" type="text" id="name" class="form-control"
+							<input autocomplete="off" formControlName="name" type="text" id="name" class="form-control"
 								placeholder="Please Enter your name" required>
 						</div>
 						<div class="mb-2">
 							<div class=" d-flex align-items-center">
 								<label for="mobile" class="form-label fw-bold mb-0" style="width: 120px;">Mobile</label>
-								<input formControlName="mobile" type="tel" id="mobile" class="form-control"
+								<input autocomplete="off" formControlName="mobile" type="tel" id="mobile" class="form-control"
 								placeholder="Please Enter your mobile number" pattern="\d{10}" maxlength="10" required
 								onkeypress="return /[0-9]/.test(event.key)">
 							
@@ -52,7 +52,7 @@
 						</div>
 						<div class="mb-2 d-flex align-items-center">
 							<label for="location" class="form-label fw-bold mb-0" style="width: 120px;">Location</label>
-							<input formControlName="location" type="text" id="location" class="form-control"
+							<input autocomplete="off" formControlName="location" type="text" id="location" class="form-control"
 								placeholder="Please Enter your location" required>
 						</div>
 						<div class="mb-2 d-flex align-items-center">
@@ -108,9 +108,7 @@
 
 
 
-<!-- /Home Banner -->
 
-<!-- Clinic and Specialities -->
 <section class="section section-specialities py-5"
 	style="background: linear-gradient(120deg, #f0f4f7, #d9e2ec);">
 	<div class="container-fluid">
@@ -151,9 +149,7 @@
 </section>
 
 
-<!-- Clinic and Specialities -->
 
-<!-- Popular Section -->
 <section class="section section-doctor">
 	<!-- About Us Section
 	<div class="row mb-4">
@@ -185,7 +181,7 @@
 								ensure your comfort and wellbeing in the familiar surroundings of your home.
 								Experience the peace of mind that comes with expert care at your fingertips.
 							</p>
-							<a href="javascript:;" class="btn btn-primary">Read More...</a>
+							<!-- <a href="javascript:;" class="btn btn-primary">Read More...</a> -->
 						</div>
 					</div>
 				</div>
@@ -196,7 +192,9 @@
 					<div class="profile-widget" *ngFor="let user of users">
 					  <div class="doc-img">
 						<a routerLink="/nursebooking">
-						  <img class="img-fluid" alt="User Image" [src]="user.photoUrl">
+							<img class="img-fluid" alt="User Image"
+							[src]="user.gender === 'male' ? 'assets/img/doctors/doctor-02.jpg' : 'assets/img/doctors/doctor-03.jpg'">
+					   
 						</a>
 						<a href="javascript:void(0)" class="fav-btn">
 						  <i class="far fa-bookmark"></i>
@@ -224,7 +222,7 @@
 						</ul>
 						<div class="row row-sm text-center">
 						  <div class="col-12">
-							<a routerLink="/nursebooking" class="btn view-btn">View Profile</a>
+							<!-- <a routerLink="/nursebooking" class="btn view-btn">View Profile</a> -->
 						  </div>
 						</div>
 					  </div>
@@ -236,9 +234,7 @@
 		</div>
 	</div >
 </section>
-<!-- /Popular Section -->
 
-<!-- ========================= about-section start ========================= -->
 <section id="about-section" class="about-section pt-50"
 	style="background: linear-gradient(120deg, #f0f4f7, #d9e2ec);">
 	<div class="col-12 text-center">
@@ -319,10 +315,7 @@
 	
 </section>
 
-<!-- ========================= about-section end ========================= -->
 
-
-<!-- Availabe Features -->
 
 <section id="services" class="bg-white service-section pt-50">
 	<div class="container">
@@ -455,7 +448,7 @@
 		</div>
 	</div>
 </section>
-<!-- Availabe Features -->
+
 
 <div id="successModalss" class="custom-modal">
 	<div class="custom-modal-content">
@@ -475,10 +468,10 @@
 	</div>
 </div>
 
-<!-- Chat Now Button -->
-<div class="chat-now" id="chatNowBtn">Chat<br>Now</div>
 
-<!-- Floating Buttons (Hidden Initially) -->
+<!-- <div class="chat-now" id="chatNowBtn">Chat<br>Now</div>
+
+
 <div class="floating-buttons" id="floatingBtns">
 	<a href="https://wa.me/9384009384" target="_blank" class="whatsapp-button">
 		<img src="assets/img/whatsapp-icon.jpeg" alt="WhatsApp">
@@ -491,7 +484,7 @@
 	</button>
 </div>
 
-<!-- Referral Modal -->
+
 <div class="modal-rel" id="modal-rel">
 	<div class="modal-content-rel">
 		<div class="modal-header-rel">
@@ -508,5 +501,5 @@
 			<button type="submit">Submit</button>
 		</form>
 	</div>
-</div>
+</div> -->
 <app-footer></app-footer>

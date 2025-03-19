@@ -32,7 +32,6 @@
             "preserveSymlinks": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
-              "src/assets/css/style.css",
               "src/scss/styles.scss",
               "src/assets/css/bootstrap-datetimepicker.min.css",
               "src/assets/plugins/fontawesome/css/fontawesome.min.css",
@@ -40,9 +39,9 @@
             ],
             "scripts": [
               "src/assets/js/jquery.min.js",
+              "src/assets/js/slick.js",
               "src/assets/js/bootstrap.min.js",
-              "src/assets/js/script.js",
-              "src/assets/js/slick.js"
+              "src/assets/js/script.js"
               
             ],
             "allowedCommonJsDependencies": ["chart.js"]

@@ -4,6 +4,7 @@ import { Page404Component } from "./page404/page404.component";
 import { Page500Component } from "./page500/page500.component";
 import { LoginComponent } from "./login/login.component";
 import { RegisterComponent } from "./register/register.component";
+import { UserloginComponent } from "./userlogin/userlogin.component";
 import { NurseBookingComponent } from "./nurse-booking/nurse-booking.component";
 import { PagesComponent } from "./pages.component";
 import { TestComponent } from "./test/test.component";
@@ -87,6 +88,13 @@ const routes: Routes = [
   {
     path: "nursebooking",
     component: NurseBookingComponent,
+    data: {
+      title: "Nurse Booking",
+    },
+  },
+  {
+    path: "userlogin",
+    component: UserloginComponent,
     data: {
       title: "Nurse Booking",
     },

@@ -21,6 +21,9 @@ export class NurseBookingComponent {
   filteredNurses: any[] = [];
   searchText: string = '';
 
+  isModalOpen: boolean = false;
+  selectedUser: any = null;
+
   constructor(private renderer:Renderer2,private router: Router,private nurseService:NurseRegService){}
 
   ngOnInit() {
@@ -64,8 +67,8 @@ export class NurseBookingComponent {
       console.log(res);
       this.users = res.data.map((user: any) => ({
         ...user,
-        // photoUrl: `http://localhost:3000/${user.file_path}`,
-        photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
+        photoUrl: `http://localhost:3000/${user.file_path}`,
+        // photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
         languages: Array.isArray(user.languages) ? user.languages : [],
         serviceopt: Array.isArray(user.serviceopt) ? user.serviceopt : [],
         from_time: user.from_time || 'N/A',
@@ -102,6 +105,19 @@ export class NurseBookingComponent {
 
 
 
+  openModal(user: any) {
+    this.selectedUser = user;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+    this.selectedUser = null;
+  }
+
+  loginRoute(){
+    this.router.navigate(['/userlogin']);
+  }
 
   }
 

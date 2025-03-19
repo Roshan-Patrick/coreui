@@ -1,50 +1,43 @@
 <header class="headers">
 	<nav class="navbar-expand-lg header-navs">
 		<div class="navbar-header">
+			<a id="mobile_btn" href="javascript:void(0);" (click)="toggleMobileMenu()">
+				<span class="bar-icon">
+					<span></span>
+					<span></span>
+					<span></span>
+				</span>
+			</a>
 			<a routerLink="HomeBMN.html" class="navbar-brand logo">
 				<img src="assets/img/bookmynurse-logo.png" class="img-fluid" alt="Logo">
 			</a>
 		</div>
-		<div class="main-menu-wrapper">
+		<div class="main-menu-wrapper" [ngClass]="{'menu-opened': isMenuOpen}">
 			<div class="menu-header">
 				<a routerLink="HomeBMN.html" class="menu-logo">
 					<img src="assets/img/bookmynurse-logo.png" class="img-fluid" alt="Logo">
 				</a>
-				<a id="menu_close" class="menu-close" routerLink="javascript:void(0);">
+				<a id="menu_close" class="menu-close" (click)="toggleMobileMenu()">
 					<i class="fas fa-times"></i>
 				</a>
 			</div>
 			<ul class="main-nav">
-				<li>
-					<a routerLink="/index"><b>Home</b></a>
-				</li>
-				<li>
-					<a  style="cursor: pointer;" class="page-scroll" (click)="navigateToSection('about-sections')"><b>About Us</b></a>
-				</li>
-				<li>
-					<a  style="cursor: pointer;" class="page-scroll" (click)="navigateToSection('servicess')"><b>Services</b></a>
-				</li>
-				<li>
-					<a class="page-scroll" routerLink="/register"><b>Registration</b></a>
-				</li>
-				
-				<li>
-					<a routerLink="/login" target="_blank"><b>Admin Login</b></a>
-				</li>
-				<li>
-					<a class="download-btn" (click)="showPopup()">
-						<b style="cursor: pointer;">
-							Get the App
-						</b>
-						</a>
-				</li>
-				<li class="login-link">
-					<a routerLink="page/login"><b>Login/Signup</b></a>
-				</li>
+				<li><a (click)="closeMenu()" routerLink="/index"><b>Home</b></a></li>
+				<li><a style="cursor: pointer;" class="page-scroll"
+						(click)="navigateToSection('about-section')"><b>About Us</b></a></li>
+				<li><a style="cursor: pointer;" class="page-scroll"
+						(click)="navigateToSection('services')"><b>Services</b></a></li>
+				<li><a (click)="closeMenu()" class="page-scroll" routerLink="/register"><b>Registration</b></a></li>
+				<li><a routerLink="/login" target="_blank"><b>Admin Login</b></a></li>
+				<li><a class="download-btn" (click)="showPopup()"><b style="cursor: pointer;">Get the App</b></a></li>
 			</ul>
 		</div>
 	</nav>
 </header>
+<!-- Sidebar Overlay (closes menu when clicked) -->
+<div *ngIf="isMenuOpen" class="sidebar-overlay" (click)="toggleMobileMenu()">
+
+</div>
 <div id="successModal" class="custom-modal">
 	<div class="custom-modal-content">
 		<img src="assets/img/bookmynurse-logo.png" alt="App Store" style="width: 180px;">

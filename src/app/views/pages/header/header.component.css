@@ -1,5 +1,6 @@
 .headers{
     display: block !important;
+    z-index: 1000 !important;
 }
 
 .navbar-expand-lg{

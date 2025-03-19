@@ -8,12 +8,12 @@
         <input type="text" class="form-control search-input" [(ngModel)]="searchText"
             placeholder="Search by Name, Specialization, Qualification or Location" (input)="onSearchInput()">
     </div>
-</div>  
+</div>
 
 <div class="row">
     <div class="col-md-4 mb-4 row-align" *ngFor="let user of filteredNurses">
         <div class="profile-widget" 
-             [ngClass]="{'busy-card': user.availability === 'Busy', 'available-card': user.availability === 'Available'}">
+             [ngClass]="{'busy-card': user.availability === 'Busy', 'available-card': user.availability === 'Available', 'no-hover': user.availability === 'Busy'}">
             
             <!-- Status Inside the Card -->
             <div class="availability-status">
@@ -24,46 +24,64 @@
 
             <!-- Profile Image -->
             <div class="doc-img">
-                <a routerLink="/nursebooking" [ngClass]="{'disabled-link': user.availability === 'Busy'}">
-                    <img class="img-fluid" alt="User Image" [src]="user.photoUrl">
-                </a>
-                <a href="javascript:void(0)" class="fav-btn">
-                    <i class="far fa-bookmark"></i>
+                <a [ngClass]="{'disabled-link': user.availability === 'Busy'}">
+                    <img class="img-fluid" alt="User Image"
+                         [src]="user.gender === 'male' ? 'assets/img/doctors/doctor-02.jpg' : 'assets/img/doctors/doctor-01.jpg'">
                 </a>
             </div>
 
             <!-- Profile Content -->
             <div class="pro-content">
                 <h3 class="title">
-                    <a style="text-decoration: none;" routerLink="/nursebooking" [ngClass]="{'disabled-link': user.availability === 'Busy'}">
+                    <a style="text-decoration: none;" [ngClass]="{'disabled-link': user.availability === 'Busy'}">
                         {{ user.name }}
                     </a>
                     <span class="age"> ({{ calculateAge(user.dob) }} yrs)</span>
                     <i class="fas fa-check-circle verified"></i>
                 </h3>
-                <p class="speciality">{{ user.education }}</p>
-
-                <ul class="available-info">
-                    <li><i class="fas fa-map-marker-alt"></i> {{ user.address }}</li>
-                    <li [ngStyle]="{'display': user.availability === 'Busy' ? 'none' : 'block'}"><i class="far fa-clock"></i> Available from {{ user.from_time || 'N/A' }} - {{ user.to_time || 'N/A' }}</li>
-                    <li><i class="fas fa-medkit"></i> Specialization: {{ user.specialization }}</li>
-                    <li><i class="fas fa-language"></i> Languages Known: {{ user.languages.join(', ') }}</li>
-                </ul>
+                <p class="speciality">{{ user.specialization }}</p>
 
                 <!-- View Profile Button -->
                 <div class="row row-sm text-center">
                     <div class="col-12">
-                        <a routerLink="/nursebooking" class="btn view-btn"
-                            [ngClass]="{'disabled-link': user.availability === 'Busy'}">
+                        <button class="btn view-btn mb-2" (click)="openModal(user)" >
+                            View More
+                        </button>
+                    </div>
+                    <div class="col-12">
+                        <button class="btn book-btn" (click)="loginRoute()" >
                             Book Now
-                        </a>
+                        </button>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
+
+
+<!-- MODAL -->
+<div *ngIf="isModalOpen" class="custom-modal-overlay">
+    <div class="custom-modal">
+        <div class="modal-header">
+            <h3>{{ selectedUser?.name }} - Profile</h3>
+            <button class="close-btn" (click)="closeModal()">×</button>
+        </div>
+        <div class="modal-body">
+            <p><strong>Age:</strong> {{ calculateAge(selectedUser?.dob) }} years</p>
+            <p><strong>Email:</strong> {{ selectedUser?.email }}</p>
+            <p><strong>Mobile:</strong> {{ selectedUser?.mobile }}</p>
+            <p><strong>Location:</strong> {{ selectedUser?.address }}</p>
+            <p><strong>Specialization:</strong> {{ selectedUser?.specialization }}</p>
+            <p><strong>Languages Known:</strong> {{ selectedUser?.languages.join(', ') }}</p>
+            <p><strong>Education:</strong> {{ selectedUser?.education }}</p>
+            <p><strong>Available from:</strong> {{ selectedUser?.from_time }} - {{ selectedUser?.to_time }}</p>
+        </div>
+    </div>
+</div>
+
+
+
 
 
 

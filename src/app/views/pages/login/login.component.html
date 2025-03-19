@@ -38,6 +38,7 @@
                   Username is required
                 </div>
               </div>
+
               <div class="input-group">
                 <input type="password" placeholder="Password" formControlName="password">
                 <div *ngIf="f['password']?.hasError('required') && (f?.['password']?.touched || submitted)"
@@ -53,8 +54,8 @@
                 <b>Forgot password?</b>
               </p>
               <p>
-                <span>Don't have an account?</span>
-                <b (click)="toggleForm()" class="pointer">Sign up here</b>
+                <!-- <span>Don't have an account?</span> -->
+                <!-- <b (click)="toggleForm()" class="pointer">Sign up here</b> -->
               </p>
             </form>
           </div>

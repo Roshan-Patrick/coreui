@@ -59,7 +59,7 @@
 
 <ng-template #userDropdown>
   <c-dropdown alignment="end" variant="nav-item">
-    <!-- <button
+    <button
       cButton
       color=""
       [caret]="false"
@@ -70,13 +70,13 @@
         cTextColor="primary"
         shape="rounded-1"
         size="md"
-        src="./assets/img/avatars/8.jpg"
+        src="./assets/img/doctors/doctor-02.jpg"
         status="success"
       >
       </c-avatar>
-    </button> -->
+    </button>
     <ul cDropdownMenu class="pt-0 pr-5 w-auto">
-      <li>
+      <!-- <li>
         <h6 cDropdownHeader class="bg-light fw-semibold py-2">Account</h6>
       </li>
       <li>
@@ -151,11 +151,11 @@
       </li>
       <li>
         <hr cDropdownDivider/>
-      </li>
+      </li> -->
       <li>
-        <a routerLink="./" cDropdownItem>
+        <a routerLink="/login" cDropdownItem>
           <svg cIcon class="me-2" name="cilLockLocked"></svg>
-          Lock Account
+          Log Out
         </a>
       </li>
       <li></li>

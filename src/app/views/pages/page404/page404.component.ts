@@ -14,7 +14,7 @@ export class Page404Component {
   users: any;
 
   constructor(private fb: FormBuilder,private nurseService:NurseRegService, private router: Router,) {}
-  @HostListener('window:scroll', ['$event'])
+  // @HostListener('window:scroll', ['$event'])
 
   ngOnInit(): void {
 
@@ -34,11 +34,11 @@ export class Page404Component {
     var navbar = document.getElementsByTagName('nav')[0];
 
   //  console.log(navbar);
-   if(st > 95){
-    navbar.classList.add('header-pinned')
-   }else{
-    navbar.classList.remove('header-pinned');
-   }
+  //  if(st > 95){
+  //   navbar.classList.add('header-pinned')
+  //  }else{
+  //   navbar.classList.remove('header-pinned');
+  //  }
   }
   
   onSubmit(): void {
@@ -67,7 +67,7 @@ export class Page404Component {
   }
 
   redirectToNurse() {
-    this.router.navigate(['/nurseBooking']); 
+    this.router.navigate(['/nursebooking']); 
   
     }
 
@@ -96,8 +96,8 @@ export class Page404Component {
         console.log(res)
         this.users = res.data.map((user: any) => ({
           ...user,
-          photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
-          // photoUrl: `http://localhost:3000/${user.file_path}`,
+          // photoUrl: `http://103.91.186.102/api/${user.file_path}`, 
+          photoUrl: `http://localhost:3000/${user.file_path}`,
         }));
       })
     }

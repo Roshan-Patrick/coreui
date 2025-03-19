@@ -1959,19 +1959,22 @@ button.bg-danger:hover {
 	12. Mobile Menu
 -----------------------*/
 
-.sidebar-overlay {
-	background-color: rgba(0, 0, 0, 0.6);
-	display: none;
-	height: 100%;
-	left: 0;
+/* When menu is opened */
+.menu-opened .main-menu-wrapper {
+	transform: translateX(0);
+  }
+  
+  /* Sidebar Overlay */
+  .sidebar-overlay {
 	position: fixed;
 	top: 0;
+	left: 0;
 	width: 100%;
-	z-index: 1040;
-}
-.menu-opened .main-menu-wrapper {
-    transform: translateX(0);
-}
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 1059;
+	display: block;
+  }
 .menu-header {
 	-webkit-box-align: center;
 	-ms-flex-align: center;
@@ -6008,19 +6011,16 @@ html.menu-opened body {
 		display: none;
 	}
 	.main-menu-wrapper {
-		order: 3;
-		width: 260px;
 		position: fixed;
 		top: 0;
 		bottom: 0;
 		left: 0;
-		overflow-x: hidden;
-		overflow-y: auto;
-		z-index: 1060;
-		transform: translateX(-260px);
-		transition: all 0.4s;
+		width: 260px;
 		background-color: #15558d;
-	}
+		transform: translateX(-100%);
+		transition: transform 0.4s ease-in-out;
+		z-index: 1060;
+	  }
 	.menu-header {
 		display: -webkit-box;
 		display: -ms-flexbox;
